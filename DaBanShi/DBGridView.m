@@ -9,6 +9,7 @@
 #import "DBGridView.h"
 #import "DBGridViewCell.h"
 #import "DBGridCellModel.h"
+#import "UIColor+DaBanShi.h"
 
 const static float marginBig        = 5.f;
 const static float marginSmall      = 2.5f;
@@ -43,7 +44,7 @@ const static float rightOrign       = 162.5f;
 - (instancetype)initWithContents:(NSArray *)contents
 {
     CGRect bounds = [[[[UIApplication sharedApplication] delegate] window] bounds];
-    self = [self initWithFrame:CGRectMake(0, 0, bounds.size.width, bounds.size.height - 49)];
+    self = [self initWithFrame:CGRectMake(0, 0, bounds.size.width, bounds.size.height)];
     if (self) {
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
@@ -100,8 +101,32 @@ const static float rightOrign       = 162.5f;
                 DBGridViewCell *cell = [[DBGridViewCell alloc] initWithFrame:CGRectMake(0, 0, cellWidth,  model.cellType == DBGridCellTypeSamll ? cellHeightSmall : cellHeightBig)];
                 cell.titleLabel.text = model.cellTitle;
                 cell.detailLabel.text = model.cellDetail;
-                cell.imageView.image = [UIImage imageNamed:model.imageName];
-                cell.backgroundColor = [UIColor lightGrayColor];
+//                cell.imageView.image = [UIImage imageNamed:model.imageName];
+                UIColor *cellBackgroundColor = nil;
+                switch (i % 5) {
+                    case 0:
+                        cellBackgroundColor = [UIColor softRed];
+                        break;
+                    case 1:
+                        cellBackgroundColor = [UIColor softYellow];
+                        break;
+                    case 2:
+                        cellBackgroundColor = [UIColor softBlue];
+                        break;
+                    case 3:
+                        cellBackgroundColor = [UIColor softGreen];
+                        break;
+                    case 4:
+                        cellBackgroundColor = [UIColor softOrange];
+                        break;
+                        
+                    default:
+                        cellBackgroundColor = [UIColor softRed];
+                        break;
+                }
+                cell.backgroundColor = cellBackgroundColor;
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellSingleTapGestureResponder:)];
+                [cell addGestureRecognizer:tap];
                 [self.cells addObject:cell];
                 [self addSubview:cell];
             }
@@ -131,6 +156,13 @@ const static float rightOrign       = 162.5f;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+}
+
+- (void)cellSingleTapGestureResponder:(UITapGestureRecognizer *)gesture
+{
+    if (self.gridDelegate && [self.gridDelegate respondsToSelector:@selector(gridView:didTappedAtIndex:)]) {
+        [self.gridDelegate gridView:self didTappedAtIndex:[self.cells indexOfObject:gesture.view]];
+    }
 }
 
 #pragma mark - scroll view delegate

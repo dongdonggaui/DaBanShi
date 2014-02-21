@@ -10,7 +10,8 @@
 #import "DBGridView.h"
 #import "DBGridCellModel.h"
 
-@interface DBHomeViewController ()
+@interface DBHomeViewController () <DBGridViewDelegate>
+- (IBAction)citySelectorDidTapped:(id)sender;
 
 @end
 
@@ -55,6 +56,7 @@
     cellModel5.cellDetail = @"xxxxxxxx";
     cellModel5.imageName = @"cover_placeholder";
     DBGridView *gridView = [[DBGridView alloc] initWithContents:[NSArray arrayWithObjects:cellModel1, cellModel2, cellModel3, cellModel4, cellModel5, nil]];
+    gridView.gridDelegate = self;
     [self.view addSubview:gridView];
 }
 
@@ -62,6 +64,17 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - grid view delegate
+- (void)gridView:(DBGridView *)gridView didTappedAtIndex:(NSInteger)index
+{
+    NSLog(@"index = %d", index);
+    [self performSegueWithIdentifier:@"showDaBanShiList" sender:nil];
+}
+
+- (IBAction)citySelectorDidTapped:(id)sender {
+    [self performSegueWithIdentifier:@"showCitySelectorSegue" sender:nil];
 }
 
 @end

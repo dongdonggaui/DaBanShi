@@ -107,6 +107,6 @@ extern const NSString *kDBNotificationCityDidChange;
 }
 
 - (IBAction)citySelectorDidTapped:(id)sender {
-    [self performSegueWithIdentifier:@"showCitySelectorSegue" sender:nil];
+    
 }
 @end

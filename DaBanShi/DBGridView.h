@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class DBGridView;
+@protocol DBGridViewDelegate <NSObject>
+
+@optional
+- (void)gridView:(DBGridView *)gridView didTappedAtIndex:(NSInteger)index;
+
+@end
+
 @interface DBGridView : UIScrollView
+
+@property (nonatomic, weak) id<DBGridViewDelegate> gridDelegate;
 
 - (instancetype)initWithContents:(NSArray *)contents;
 

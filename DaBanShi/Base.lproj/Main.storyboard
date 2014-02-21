@@ -16,17 +16,32 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="lpo-Ue-8qJ" kind="relationship" relationship="viewControllers" id="1An-hW-Ro2"/>
                         <segue destination="XMG-N1-JZY" kind="relationship" relationship="viewControllers" id="xVw-hD-Oi9"/>
                         <segue destination="3EE-70-G3R" kind="relationship" relationship="viewControllers" id="eVs-0A-J89"/>
-                        <segue destination="FYv-Ss-Jzg" kind="relationship" relationship="viewControllers" id="XPO-Wo-wzD"/>
+                        <segue destination="nXG-Vz-k9d" kind="relationship" relationship="viewControllers" id="kK4-Cu-dAZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxR-nn-etm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-666" y="167"/>
         </scene>
-        <!--Home View Controller - Item-->
+        <!--Navigation Controller - Item-->
+        <scene sceneID="voo-IT-T6i">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="nXG-Vz-k9d" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="xII-8g-0fH"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gls-JJ-AVl">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="FYv-Ss-Jzg" kind="relationship" relationship="rootViewController" id="tSa-PC-lpT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jND-Rq-Ym2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-627" y="-858"/>
+        </scene>
+        <!--Home View Controller - 打版师-->
         <scene sceneID="L75-t4-ar8">
             <objects>
                 <viewController id="FYv-Ss-Jzg" customClass="DBHomeViewController" sceneMemberID="viewController">
@@ -36,26 +51,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="TaD-Qt-Zja"/>
+                    <navigationItem key="navigationItem" title="打版师" id="xci-eF-54U">
+                        <barButtonItem key="leftBarButtonItem" title="武汉" id="iwR-QZ-8rv">
+                            <connections>
+                                <action selector="citySelectorDidTapped:" destination="FYv-Ss-Jzg" id="B20-CX-BdM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="push" identifier="showDaBanShiList" id="ba1-VQ-uvt"/>
+                        <segue destination="187-fp-ijR" kind="modal" identifier="showCitySelectorSegue" id="rxp-QS-BMo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zaY-EQ-t9D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-176" y="-858"/>
-        </scene>
-        <!--Navigation Controller - Item-->
-        <scene sceneID="9Oi-xK-l7z">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="lpo-Ue-8qJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="wNy-aW-mwa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rPR-Vl-SAs">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="KWt-zn-B5o"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rON-z3-DKL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-181" y="-191"/>
         </scene>
         <!--List View Controller - 打版师-->
         <scene sceneID="ufC-wZ-h7g">
@@ -65,17 +75,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="zhH-4o-9PE">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="vXZ-lx-hvc" id="fUa-qs-RIf"/>
-                            </connections>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" textLabel="2zo-9f-Yfr" detailTextLabel="t8E-WG-aQN" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="DMd-gz-IzW">
-                                <rect key="frame" x="0.0" y="130" width="320" height="75"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DMd-gz-IzW" id="uav-dh-dVh">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
@@ -105,32 +107,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="打版师" id="CiW-Kw-i6s">
-                        <barButtonItem key="leftBarButtonItem" title="武汉" id="Xhr-LC-sOh">
-                            <connections>
-                                <action selector="citySelectorDidTapped:" destination="vXZ-lx-hvc" id="rkX-xp-3pE"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="筛选" id="AL4-Qo-8g5"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchDisplayController" destination="Yqa-yg-8jn" id="Qow-a2-EQR"/>
                         <outlet property="tableView" destination="rYZ-AV-BFJ" id="And-wG-0Bv"/>
-                        <segue destination="187-fp-ijR" kind="modal" identifier="showCitySelectorSegue" id="tMg-ur-bxn"/>
                         <segue destination="RXq-Jb-Jma" kind="push" identifier="showDaBanShiDetail" id="ebr-TQ-aV7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Yqa-yg-8jn">
-                    <connections>
-                        <outlet property="delegate" destination="vXZ-lx-hvc" id="Zyx-gE-8d8"/>
-                        <outlet property="searchBar" destination="zhH-4o-9PE" id="H3F-BA-aUS"/>
-                        <outlet property="searchContentsController" destination="vXZ-lx-hvc" id="Ddh-nq-TOB"/>
-                        <outlet property="searchResultsDataSource" destination="vXZ-lx-hvc" id="Gd8-zP-H1s"/>
-                        <outlet property="searchResultsDelegate" destination="vXZ-lx-hvc" id="doB-ki-Apz"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="250" y="-191"/>
+            <point key="canvasLocation" x="317" y="-355"/>
         </scene>
         <!--Dabanshi Detail View Controller-->
         <scene sceneID="zsX-e2-zn6">
@@ -229,7 +215,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QAX-Id-W3F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="787" y="-17"/>
+            <point key="canvasLocation" x="765" y="-355"/>
         </scene>
         <!--City Selector View Controller - 请选择城市-->
         <scene sceneID="sby-vi-l5w">
@@ -269,7 +255,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q78-dr-yB8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1235" y="-697"/>
+            <point key="canvasLocation" x="765" y="-1041"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x3K-lJ-XMM">
@@ -284,7 +270,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDA-TO-qA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="787" y="-697"/>
+            <point key="canvasLocation" x="317" y="-1041"/>
         </scene>
         <!--Navigation Controller - Item-->
         <scene sceneID="dLc-3r-XwA">
