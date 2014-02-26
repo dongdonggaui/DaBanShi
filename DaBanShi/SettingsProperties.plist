@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<dict>
+			<key>identifier</key>
+			<string>avator</string>
+			<key>title</key>
+			<string>头像设置</string>
+			<key>image</key>
+			<string></string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>identifier</key>
+			<string>booking</string>
+			<key>title</key>
+			<string>预约状态设置</string>
+			<key>image</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>identifier</key>
+			<string></string>
+			<key>title</key>
+			<string>xxx设置</string>
+			<key>image</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>identifier</key>
+			<string></string>
+			<key>title</key>
+			<string>xxx设置</string>
+			<key>image</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>identifier</key>
+			<string></string>
+			<key>title</key>
+			<string>xxx设置</string>
+			<key>image</key>
+			<string></string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>identifier</key>
+			<string></string>
+			<key>title</key>
+			<string>xxx设置</string>
+			<key>image</key>
+			<string></string>
+		</dict>
+	</array>
+</array>
+</plist>

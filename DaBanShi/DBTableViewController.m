@@ -32,15 +32,27 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    [refresh addTarget:self action:@selector(refreshControlValueChanged:) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refresh;
+    self.refreshEnable = YES;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setRefreshEnable:(BOOL)refreshEnable
+{
+    if (refreshEnable != _refreshEnable) {
+        _refreshEnable = refreshEnable;
+        if (refreshEnable) {
+            UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+            [refresh addTarget:self action:@selector(refreshControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+            self.refreshControl = refresh;
+        } else {
+            self.refreshControl = nil;
+        }
+    }
 }
 
 - (void)refreshControlValueChanged:(UIRefreshControl *)sender

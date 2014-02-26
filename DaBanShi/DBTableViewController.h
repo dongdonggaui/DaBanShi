@@ -11,6 +11,7 @@
 @interface DBTableViewController : UITableViewController
 
 @property (nonatomic, weak) id passValue;
+@property (nonatomic) BOOL refreshEnable;
 
 - (void)refreshControlValueChanged:(UIRefreshControl *)sender;
 

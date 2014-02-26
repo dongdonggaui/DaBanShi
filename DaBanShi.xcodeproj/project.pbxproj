@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0666F4E218B63DFD00042951 /* UIColor+DaBanShi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0666F4E118B63DFD00042951 /* UIColor+DaBanShi.m */; };
+		098BA12B18BDD8DF002C6065 /* DBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 098BA12A18BDD8DF002C6065 /* DBSettingsViewController.m */; };
+		098BA12E18BDDA66002C6065 /* DBBookStatusSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 098BA12D18BDDA66002C6065 /* DBBookStatusSettingViewController.m */; };
+		098BA13218BDDB0E002C6065 /* DBBookingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 098BA13118BDDB0E002C6065 /* DBBookingManager.m */; };
+		098BA13418BDE266002C6065 /* SettingsProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 098BA13318BDE266002C6065 /* SettingsProperties.plist */; };
 		099D6EBD18B5AADA001B7CDF /* DBDabanshiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 099D6EBC18B5AADA001B7CDF /* DBDabanshiDetailViewController.m */; };
 		099D6EBF18B5B91A001B7CDF /* cover_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 099D6EBE18B5B91A001B7CDF /* cover_placeholder.png */; };
 		099D6EC218B5C59D001B7CDF /* DBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 099D6EC118B5C59D001B7CDF /* DBTableViewController.m */; };
@@ -48,6 +52,13 @@
 /* Begin PBXFileReference section */
 		0666F4E018B63DFD00042951 /* UIColor+DaBanShi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DaBanShi.h"; sourceTree = "<group>"; };
 		0666F4E118B63DFD00042951 /* UIColor+DaBanShi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DaBanShi.m"; sourceTree = "<group>"; };
+		098BA12918BDD8DF002C6065 /* DBSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBSettingsViewController.h; sourceTree = "<group>"; };
+		098BA12A18BDD8DF002C6065 /* DBSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSettingsViewController.m; sourceTree = "<group>"; };
+		098BA12C18BDDA66002C6065 /* DBBookStatusSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBBookStatusSettingViewController.h; sourceTree = "<group>"; };
+		098BA12D18BDDA66002C6065 /* DBBookStatusSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBBookStatusSettingViewController.m; sourceTree = "<group>"; };
+		098BA13018BDDB0E002C6065 /* DBBookingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBBookingManager.h; sourceTree = "<group>"; };
+		098BA13118BDDB0E002C6065 /* DBBookingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBBookingManager.m; sourceTree = "<group>"; };
+		098BA13318BDE266002C6065 /* SettingsProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingsProperties.plist; sourceTree = "<group>"; };
 		099D6EBB18B5AADA001B7CDF /* DBDabanshiDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBDabanshiDetailViewController.h; sourceTree = "<group>"; };
 		099D6EBC18B5AADA001B7CDF /* DBDabanshiDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBDabanshiDetailViewController.m; sourceTree = "<group>"; };
 		099D6EBE18B5B91A001B7CDF /* cover_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover_placeholder.png; sourceTree = "<group>"; };
@@ -122,6 +133,15 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		098BA12F18BDDAD6002C6065 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				098BA13018BDDB0E002C6065 /* DBBookingManager.h */,
+				098BA13118BDDB0E002C6065 /* DBBookingManager.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		099D6EC618B5DD38001B7CDF /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +167,10 @@
 				09D309AB18B4B791003F2840 /* DBCitySelectorViewController.m */,
 				099D6EBB18B5AADA001B7CDF /* DBDabanshiDetailViewController.h */,
 				099D6EBC18B5AADA001B7CDF /* DBDabanshiDetailViewController.m */,
+				098BA12918BDD8DF002C6065 /* DBSettingsViewController.h */,
+				098BA12A18BDD8DF002C6065 /* DBSettingsViewController.m */,
+				098BA12C18BDDA66002C6065 /* DBBookStatusSettingViewController.h */,
+				098BA12D18BDDA66002C6065 /* DBBookStatusSettingViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -201,6 +225,7 @@
 				099D6ECD18B5DDC2001B7CDF /* DBGridViewCell.m */,
 				099D6ED318B606AD001B7CDF /* DBGridCellModel.h */,
 				099D6ED418B606AD001B7CDF /* DBGridCellModel.m */,
+				098BA12F18BDDAD6002C6065 /* Services */,
 				0666F4DF18B63DD400042951 /* Categories */,
 				099D6EC818B5DD62001B7CDF /* Views */,
 				099D6EC718B5DD48001B7CDF /* ViewControllers */,
@@ -218,6 +243,7 @@
 				09D3097918B4B0B1003F2840 /* InfoPlist.strings */,
 				09D3097C18B4B0B1003F2840 /* main.m */,
 				09D3097E18B4B0B1003F2840 /* DaBanShi-Prefix.pch */,
+				098BA13318BDE266002C6065 /* SettingsProperties.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -319,6 +345,7 @@
 			files = (
 				09D3098918B4B0B1003F2840 /* Images.xcassets in Resources */,
 				09D309B018B4CF72003F2840 /* avatar_placehold@2x.png in Resources */,
+				098BA13418BDE266002C6065 /* SettingsProperties.plist in Resources */,
 				09D309A918B4B5E3003F2840 /* placehold@2x.png in Resources */,
 				099D6EBF18B5B91A001B7CDF /* cover_placeholder.png in Resources */,
 				09D3097B18B4B0B1003F2840 /* InfoPlist.strings in Resources */,
@@ -345,7 +372,10 @@
 				09D3098718B4B0B1003F2840 /* DBViewController.m in Sources */,
 				099D6EC218B5C59D001B7CDF /* DBTableViewController.m in Sources */,
 				0666F4E218B63DFD00042951 /* UIColor+DaBanShi.m in Sources */,
+				098BA12E18BDDA66002C6065 /* DBBookStatusSettingViewController.m in Sources */,
 				099D6EBD18B5AADA001B7CDF /* DBDabanshiDetailViewController.m in Sources */,
+				098BA12B18BDD8DF002C6065 /* DBSettingsViewController.m in Sources */,
+				098BA13218BDDB0E002C6065 /* DBBookingManager.m in Sources */,
 				099D6ECE18B5DDC2001B7CDF /* DBGridViewCell.m in Sources */,
 				09D309A718B4B356003F2840 /* DBListViewController.m in Sources */,
 				09D3097D18B4B0B1003F2840 /* main.m in Sources */,
