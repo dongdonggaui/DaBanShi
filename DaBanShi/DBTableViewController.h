@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBAppDelegate.h"
 
 @interface DBTableViewController : UITableViewController
 
 @property (nonatomic, weak) id passValue;
 @property (nonatomic) BOOL refreshEnable;
 
+- (DBAppDelegate *)appDelegate;
 - (void)refreshControlValueChanged:(UIRefreshControl *)sender;
 
 @end

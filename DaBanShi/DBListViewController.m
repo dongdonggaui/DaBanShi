@@ -7,12 +7,14 @@
 //
 
 #import "DBListViewController.h"
+#import "DBUserManager.h"
 
 extern const NSString *kDBNotificationCityDidChange;
 
 @interface DBListViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *datas;
 - (IBAction)citySelectorDidTapped:(id)sender;
 
 @end
@@ -37,7 +39,16 @@ extern const NSString *kDBNotificationCityDidChange;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    _datas = [NSMutableArray array];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveCityChangeNotification:) name:(NSString *)kDBNotificationCityDidChange object:nil];
+    [[DBUserManager sharedInstance] fetchAllDaBanShiOnSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *response = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+        [self.datas addObjectsFromArray:response];
+        NSLog(@"response = %@", response);
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error = %@", error);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -68,7 +79,7 @@ extern const NSString *kDBNotificationCityDidChange;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.tableView) {
-        return 10;
+        return self.datas.count;
     } else {
         return 0;
     }
@@ -79,12 +90,17 @@ extern const NSString *kDBNotificationCityDidChange;
     if (tableView == self.tableView) {
         static NSString *cellIdentifier = @"ListCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        UIImage *image = [UIImage imageNamed:@"avatar_placehold"];
-        cell.imageView.image = image;
-        cell.imageView.layer.cornerRadius = 5;
-        cell.clipsToBounds = YES;
-        cell.textLabel.text = @"打版师xxx";
-        cell.detailTextLabel.text = @"地址：武珞路xxx号";
+        if (cell) {
+            NSDictionary *dic = [self.datas objectAtIndex:indexPath.row];
+            NSString *avator = [dic objectForKey:@"avator"] != [NSNull null] ? [dic objectForKey:@"avator"] : @"avatar_placehold";
+            UIImage *image = [UIImage imageNamed:avator];
+            cell.imageView.image = image;
+            cell.imageView.layer.cornerRadius = 5;
+            cell.clipsToBounds = YES;
+            cell.textLabel.text = [dic objectForKey:@"nickname"];
+            cell.detailTextLabel.numberOfLines = 0;
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"18627979166\n%@", [dic objectForKey:@"address"]];
+        }
         
         return cell;
     }

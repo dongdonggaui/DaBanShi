@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MBProgressHUD.h>
+#import "DBAppDelegate.h"
 
 @interface DBViewController : UIViewController
 
 @property (nonatomic, weak) id passValue;
+@property (nonatomic, strong) MBProgressHUD *hud;
+
+- (DBAppDelegate *)appDelegate;
 
 @end

@@ -7,12 +7,17 @@
 //
 
 #import "DBAppDelegate.h"
+#import "DBAuthManager.h"
 
 @implementation DBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    if (![[DBAuthManager sharedInstance] isAuthorized]) {
+        [self switchToAuhorizationView];
+    }
+    
     return YES;
 }
 							
@@ -41,6 +46,26 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - 
+- (void)switchToStoryboard:(NSString *)storyboardName
+{
+    NSAssert(storyboardName != nil, @"param storyboardName must not be nil");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    if (storyboard) {
+        self.window.rootViewController = [storyboard instantiateInitialViewController];
+    }
+}
+
+- (void)switchToAuhorizationView
+{
+    [self switchToStoryboard:@"Authorization"];
+}
+
+- (void)switchToMainView
+{
+    [self switchToStoryboard:@"Main"];
 }
 
 @end

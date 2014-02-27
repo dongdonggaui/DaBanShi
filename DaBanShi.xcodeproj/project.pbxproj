@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0666F4E218B63DFD00042951 /* UIColor+DaBanShi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0666F4E118B63DFD00042951 /* UIColor+DaBanShi.m */; };
+		0959AAFD18BEE4C1008188AD /* DBAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959AAFC18BEE4C1008188AD /* DBAuthManager.m */; };
+		0959AB0018BEE55E008188AD /* DBUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959AAFF18BEE55E008188AD /* DBUserManager.m */; };
+		0959AB1218BF171D008188AD /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0959AB1118BF171D008188AD /* Authorization.storyboard */; };
+		0959AB1618BF2622008188AD /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959AB1518BF2622008188AD /* DBUser.m */; };
+		0959AB1918BF2C34008188AD /* DBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959AB1818BF2C34008188AD /* DBLoginViewController.m */; };
+		0959AB1C18BF3509008188AD /* DBWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959AB1B18BF3509008188AD /* DBWelcomeViewController.m */; };
+		0959AB1F18BF36AE008188AD /* DBAPIHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959AB1E18BF36AE008188AD /* DBAPIHTTPClient.m */; };
 		098BA12B18BDD8DF002C6065 /* DBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 098BA12A18BDD8DF002C6065 /* DBSettingsViewController.m */; };
 		098BA12E18BDDA66002C6065 /* DBBookStatusSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 098BA12D18BDDA66002C6065 /* DBBookStatusSettingViewController.m */; };
 		098BA13218BDDB0E002C6065 /* DBBookingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 098BA13118BDDB0E002C6065 /* DBBookingManager.m */; };
@@ -37,6 +44,7 @@
 		09D309A918B4B5E3003F2840 /* placehold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09D309A818B4B5E3003F2840 /* placehold@2x.png */; };
 		09D309AC18B4B791003F2840 /* DBCitySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D309AB18B4B791003F2840 /* DBCitySelectorViewController.m */; };
 		09D309B018B4CF72003F2840 /* avatar_placehold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09D309AF18B4CF72003F2840 /* avatar_placehold@2x.png */; };
+		0FEEDDF27E36480CBA47DC16 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D0EA84D7B54BCC82B76E3B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +60,19 @@
 /* Begin PBXFileReference section */
 		0666F4E018B63DFD00042951 /* UIColor+DaBanShi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DaBanShi.h"; sourceTree = "<group>"; };
 		0666F4E118B63DFD00042951 /* UIColor+DaBanShi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DaBanShi.m"; sourceTree = "<group>"; };
+		0959AAFB18BEE4C1008188AD /* DBAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAuthManager.h; sourceTree = "<group>"; };
+		0959AAFC18BEE4C1008188AD /* DBAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAuthManager.m; sourceTree = "<group>"; };
+		0959AAFE18BEE55E008188AD /* DBUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserManager.h; sourceTree = "<group>"; };
+		0959AAFF18BEE55E008188AD /* DBUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserManager.m; sourceTree = "<group>"; };
+		0959AB1118BF171D008188AD /* Authorization.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
+		0959AB1418BF2622008188AD /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUser.h; sourceTree = "<group>"; };
+		0959AB1518BF2622008188AD /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUser.m; sourceTree = "<group>"; };
+		0959AB1718BF2C34008188AD /* DBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLoginViewController.h; sourceTree = "<group>"; };
+		0959AB1818BF2C34008188AD /* DBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLoginViewController.m; sourceTree = "<group>"; };
+		0959AB1A18BF3509008188AD /* DBWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBWelcomeViewController.h; sourceTree = "<group>"; };
+		0959AB1B18BF3509008188AD /* DBWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBWelcomeViewController.m; sourceTree = "<group>"; };
+		0959AB1D18BF36AE008188AD /* DBAPIHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAPIHTTPClient.h; sourceTree = "<group>"; };
+		0959AB1E18BF36AE008188AD /* DBAPIHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAPIHTTPClient.m; sourceTree = "<group>"; };
 		098BA12918BDD8DF002C6065 /* DBSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBSettingsViewController.h; sourceTree = "<group>"; };
 		098BA12A18BDD8DF002C6065 /* DBSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSettingsViewController.m; sourceTree = "<group>"; };
 		098BA12C18BDDA66002C6065 /* DBBookStatusSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBBookStatusSettingViewController.h; sourceTree = "<group>"; };
@@ -98,6 +119,8 @@
 		09D309AA18B4B791003F2840 /* DBCitySelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCitySelectorViewController.h; sourceTree = "<group>"; };
 		09D309AB18B4B791003F2840 /* DBCitySelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCitySelectorViewController.m; sourceTree = "<group>"; };
 		09D309AF18B4CF72003F2840 /* avatar_placehold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar_placehold@2x.png"; sourceTree = "<group>"; };
+		146D81E834AC40B891AE7C2D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		55D0EA84D7B54BCC82B76E3B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +131,7 @@
 				09D3097318B4B0B1003F2840 /* CoreGraphics.framework in Frameworks */,
 				09D3097518B4B0B1003F2840 /* UIKit.framework in Frameworks */,
 				09D3097118B4B0B1003F2840 /* Foundation.framework in Frameworks */,
+				0FEEDDF27E36480CBA47DC16 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,11 +157,26 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		0959AB1318BF2606008188AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0959AB1418BF2622008188AD /* DBUser.h */,
+				0959AB1518BF2622008188AD /* DBUser.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		098BA12F18BDDAD6002C6065 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				098BA13018BDDB0E002C6065 /* DBBookingManager.h */,
 				098BA13118BDDB0E002C6065 /* DBBookingManager.m */,
+				0959AAFB18BEE4C1008188AD /* DBAuthManager.h */,
+				0959AAFC18BEE4C1008188AD /* DBAuthManager.m */,
+				0959AAFE18BEE55E008188AD /* DBUserManager.h */,
+				0959AAFF18BEE55E008188AD /* DBUserManager.m */,
+				0959AB1D18BF36AE008188AD /* DBAPIHTTPClient.h */,
+				0959AB1E18BF36AE008188AD /* DBAPIHTTPClient.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -159,6 +198,10 @@
 				09D3098618B4B0B1003F2840 /* DBViewController.m */,
 				099D6EC018B5C59D001B7CDF /* DBTableViewController.h */,
 				099D6EC118B5C59D001B7CDF /* DBTableViewController.m */,
+				0959AB1A18BF3509008188AD /* DBWelcomeViewController.h */,
+				0959AB1B18BF3509008188AD /* DBWelcomeViewController.m */,
+				0959AB1718BF2C34008188AD /* DBLoginViewController.h */,
+				0959AB1818BF2C34008188AD /* DBLoginViewController.m */,
 				099D6ECF18B5F147001B7CDF /* DBHomeViewController.h */,
 				099D6ED018B5F147001B7CDF /* DBHomeViewController.m */,
 				09D309A518B4B356003F2840 /* DBListViewController.h */,
@@ -179,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				09D3098218B4B0B1003F2840 /* Main.storyboard */,
+				0959AB1118BF171D008188AD /* Authorization.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -190,6 +234,7 @@
 				09D3099518B4B0B1003F2840 /* DaBanShiTests */,
 				09D3096F18B4B0B1003F2840 /* Frameworks */,
 				09D3096E18B4B0B1003F2840 /* Products */,
+				146D81E834AC40B891AE7C2D /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,6 +254,7 @@
 				09D3097218B4B0B1003F2840 /* CoreGraphics.framework */,
 				09D3097418B4B0B1003F2840 /* UIKit.framework */,
 				09D3098F18B4B0B1003F2840 /* XCTest.framework */,
+				55D0EA84D7B54BCC82B76E3B /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -225,6 +271,7 @@
 				099D6ECD18B5DDC2001B7CDF /* DBGridViewCell.m */,
 				099D6ED318B606AD001B7CDF /* DBGridCellModel.h */,
 				099D6ED418B606AD001B7CDF /* DBGridCellModel.m */,
+				0959AB1318BF2606008188AD /* Models */,
 				098BA12F18BDDAD6002C6065 /* Services */,
 				0666F4DF18B63DD400042951 /* Categories */,
 				099D6EC818B5DD62001B7CDF /* Views */,
@@ -273,9 +320,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09D3099F18B4B0B1003F2840 /* Build configuration list for PBXNativeTarget "DaBanShi" */;
 			buildPhases = (
+				8F0069FEB56D47939D15B8CA /* Check Pods Manifest.lock */,
 				09D3096918B4B0B1003F2840 /* Sources */,
 				09D3096A18B4B0B1003F2840 /* Frameworks */,
 				09D3096B18B4B0B1003F2840 /* Resources */,
+				5F4FA4F9E55F458F85F5F62E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -343,6 +392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0959AB1218BF171D008188AD /* Authorization.storyboard in Resources */,
 				09D3098918B4B0B1003F2840 /* Images.xcassets in Resources */,
 				09D309B018B4CF72003F2840 /* avatar_placehold@2x.png in Resources */,
 				098BA13418BDE266002C6065 /* SettingsProperties.plist in Resources */,
@@ -363,6 +413,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5F4FA4F9E55F458F85F5F62E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F0069FEB56D47939D15B8CA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		09D3096918B4B0B1003F2840 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -375,13 +458,19 @@
 				098BA12E18BDDA66002C6065 /* DBBookStatusSettingViewController.m in Sources */,
 				099D6EBD18B5AADA001B7CDF /* DBDabanshiDetailViewController.m in Sources */,
 				098BA12B18BDD8DF002C6065 /* DBSettingsViewController.m in Sources */,
+				0959AB0018BEE55E008188AD /* DBUserManager.m in Sources */,
 				098BA13218BDDB0E002C6065 /* DBBookingManager.m in Sources */,
+				0959AB1C18BF3509008188AD /* DBWelcomeViewController.m in Sources */,
 				099D6ECE18B5DDC2001B7CDF /* DBGridViewCell.m in Sources */,
 				09D309A718B4B356003F2840 /* DBListViewController.m in Sources */,
+				0959AB1918BF2C34008188AD /* DBLoginViewController.m in Sources */,
 				09D3097D18B4B0B1003F2840 /* main.m in Sources */,
 				099D6ECB18B5DD9E001B7CDF /* DBGridView.m in Sources */,
 				099D6ED518B606AD001B7CDF /* DBGridCellModel.m in Sources */,
+				0959AAFD18BEE4C1008188AD /* DBAuthManager.m in Sources */,
+				0959AB1F18BF36AE008188AD /* DBAPIHTTPClient.m in Sources */,
 				09D309AC18B4B791003F2840 /* DBCitySelectorViewController.m in Sources */,
+				0959AB1618BF2622008188AD /* DBUser.m in Sources */,
 				099D6ED118B5F147001B7CDF /* DBHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,6 +595,7 @@
 		};
 		09D309A018B4B0B1003F2840 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 146D81E834AC40B891AE7C2D /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -514,12 +604,14 @@
 				INFOPLIST_FILE = "DaBanShi/DaBanShi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		09D309A118B4B0B1003F2840 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 146D81E834AC40B891AE7C2D /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -528,6 +620,7 @@
 				INFOPLIST_FILE = "DaBanShi/DaBanShi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

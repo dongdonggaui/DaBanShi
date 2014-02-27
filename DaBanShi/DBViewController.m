@@ -26,4 +26,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (DBAppDelegate *)appDelegate
+{
+    return (DBAppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
+- (MBProgressHUD *)hud
+{
+    if (!_hud) {
+        _hud = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:_hud];
+        _hud.removeFromSuperViewOnHide = YES;
+    }
+    
+    return _hud;
+}
+
 @end

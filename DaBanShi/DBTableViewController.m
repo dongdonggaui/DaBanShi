@@ -41,6 +41,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (DBAppDelegate *)appDelegate
+{
+    return (DBAppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
 - (void)setRefreshEnable:(BOOL)refreshEnable
 {
     if (refreshEnable != _refreshEnable) {

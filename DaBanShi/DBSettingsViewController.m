@@ -7,10 +7,13 @@
 //
 
 #import "DBSettingsViewController.h"
+#import "DBAuthManager.h"
+#import <MBProgressHUD.h>
 
 @interface DBSettingsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *settingsMenu;
+- (IBAction)logoutButtonDidTapped:(id)sender;
 
 @end
 
@@ -74,6 +77,23 @@
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+}
+
+- (IBAction)logoutButtonDidTapped:(id)sender {
+    __weak DBSettingsViewController *safeSelf = self;
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    [self.view addSubview:hud];
+    [hud showAnimated:YES whileExecutingBlock:^{
+        double delayInSeconds = 1.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [[DBAuthManager sharedInstance] logoutWithComplecation:nil];
+        });
+    } completionBlock:^{
+        [safeSelf.appDelegate switchToAuhorizationView];
+        [hud hide:YES];
+    }];
 }
 
 @end
