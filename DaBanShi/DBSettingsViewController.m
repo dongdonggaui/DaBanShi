@@ -92,7 +92,7 @@
         });
     } completionBlock:^{
         [safeSelf.appDelegate switchToAuhorizationView];
-        [hud hide:YES];
+        [hud removeFromSuperview];
     }];
 }
 

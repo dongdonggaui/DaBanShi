@@ -68,9 +68,9 @@
         });
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        DLog(@"error : %@", operation.responseString);
+        DLog(@"errorCode : %d, errorMessage : %@", operation.response.statusCode, operation.responseString);
         [MBProgressHUD hideAllHUDsForView:safeSelf.view animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:error.localizedFailureReason delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%@", operation.responseString] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
     }];
 }

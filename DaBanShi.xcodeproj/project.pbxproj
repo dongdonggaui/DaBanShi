@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0633027C18BF940600886DE6 /* DBTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0633027B18BF940600886DE6 /* DBTabController.m */; };
+		0633027F18BF959900886DE6 /* camera_button_take.png in Resources */ = {isa = PBXBuildFile; fileRef = 0633027D18BF959900886DE6 /* camera_button_take.png */; };
+		0633028018BF959900886DE6 /* camera_button_take@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0633027E18BF959900886DE6 /* camera_button_take@2x.png */; };
 		0666F4E218B63DFD00042951 /* UIColor+DaBanShi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0666F4E118B63DFD00042951 /* UIColor+DaBanShi.m */; };
 		0959AAFD18BEE4C1008188AD /* DBAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959AAFC18BEE4C1008188AD /* DBAuthManager.m */; };
 		0959AB0018BEE55E008188AD /* DBUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959AAFF18BEE55E008188AD /* DBUserManager.m */; };
@@ -58,6 +61,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0633027A18BF940600886DE6 /* DBTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTabController.h; sourceTree = "<group>"; };
+		0633027B18BF940600886DE6 /* DBTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTabController.m; sourceTree = "<group>"; };
+		0633027D18BF959900886DE6 /* camera_button_take.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_button_take.png; sourceTree = "<group>"; };
+		0633027E18BF959900886DE6 /* camera_button_take@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_button_take@2x.png"; sourceTree = "<group>"; };
 		0666F4E018B63DFD00042951 /* UIColor+DaBanShi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DaBanShi.h"; sourceTree = "<group>"; };
 		0666F4E118B63DFD00042951 /* UIColor+DaBanShi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DaBanShi.m"; sourceTree = "<group>"; };
 		0959AAFB18BEE4C1008188AD /* DBAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAuthManager.h; sourceTree = "<group>"; };
@@ -184,6 +191,8 @@
 		099D6EC618B5DD38001B7CDF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0633027D18BF959900886DE6 /* camera_button_take.png */,
+				0633027E18BF959900886DE6 /* camera_button_take@2x.png */,
 				099D6EBE18B5B91A001B7CDF /* cover_placeholder.png */,
 				09D309A818B4B5E3003F2840 /* placehold@2x.png */,
 				09D309AF18B4CF72003F2840 /* avatar_placehold@2x.png */,
@@ -194,6 +203,8 @@
 		099D6EC718B5DD48001B7CDF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0633027A18BF940600886DE6 /* DBTabController.h */,
+				0633027B18BF940600886DE6 /* DBTabController.m */,
 				09D3098518B4B0B1003F2840 /* DBViewController.h */,
 				09D3098618B4B0B1003F2840 /* DBViewController.m */,
 				099D6EC018B5C59D001B7CDF /* DBTableViewController.h */,
@@ -392,6 +403,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0633028018BF959900886DE6 /* camera_button_take@2x.png in Resources */,
 				0959AB1218BF171D008188AD /* Authorization.storyboard in Resources */,
 				09D3098918B4B0B1003F2840 /* Images.xcassets in Resources */,
 				09D309B018B4CF72003F2840 /* avatar_placehold@2x.png in Resources */,
@@ -399,6 +411,7 @@
 				09D309A918B4B5E3003F2840 /* placehold@2x.png in Resources */,
 				099D6EBF18B5B91A001B7CDF /* cover_placeholder.png in Resources */,
 				09D3097B18B4B0B1003F2840 /* InfoPlist.strings in Resources */,
+				0633027F18BF959900886DE6 /* camera_button_take.png in Resources */,
 				09D3098418B4B0B1003F2840 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +477,7 @@
 				099D6ECE18B5DDC2001B7CDF /* DBGridViewCell.m in Sources */,
 				09D309A718B4B356003F2840 /* DBListViewController.m in Sources */,
 				0959AB1918BF2C34008188AD /* DBLoginViewController.m in Sources */,
+				0633027C18BF940600886DE6 /* DBTabController.m in Sources */,
 				09D3097D18B4B0B1003F2840 /* main.m in Sources */,
 				099D6ECB18B5DD9E001B7CDF /* DBGridView.m in Sources */,
 				099D6ED518B606AD001B7CDF /* DBGridCellModel.m in Sources */,
