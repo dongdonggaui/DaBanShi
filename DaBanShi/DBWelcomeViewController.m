@@ -8,8 +8,10 @@
 
 #import "DBWelcomeViewController.h"
 
-@interface DBWelcomeViewController ()
+@interface DBWelcomeViewController () <UIScrollViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIImageView *maskBackgroundImageView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end
 
 @implementation DBWelcomeViewController
@@ -27,6 +29,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.scrollView.delegate = self;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.bounces = NO;
+    self.scrollView.contentSize = CGSizeMake(3 * self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -47,6 +53,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - scroll view delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat xOffset = scrollView.contentOffset.x;
+    CGRect frame = self.maskBackgroundImageView.frame;
+    frame.origin.x = -xOffset / 2.f;
+    self.maskBackgroundImageView.frame = frame;
 }
 
 @end

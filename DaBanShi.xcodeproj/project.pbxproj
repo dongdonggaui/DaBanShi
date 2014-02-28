@@ -11,6 +11,7 @@
 		0633027F18BF959900886DE6 /* camera_button_take.png in Resources */ = {isa = PBXBuildFile; fileRef = 0633027D18BF959900886DE6 /* camera_button_take.png */; };
 		0633028018BF959900886DE6 /* camera_button_take@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0633027E18BF959900886DE6 /* camera_button_take@2x.png */; };
 		0666F4E218B63DFD00042951 /* UIColor+DaBanShi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0666F4E118B63DFD00042951 /* UIColor+DaBanShi.m */; };
+		091ACA9E18C05C0C002961CD /* welcome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 091ACA9D18C05C0C002961CD /* welcome@2x.png */; };
 		0959AAFD18BEE4C1008188AD /* DBAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959AAFC18BEE4C1008188AD /* DBAuthManager.m */; };
 		0959AB0018BEE55E008188AD /* DBUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959AAFF18BEE55E008188AD /* DBUserManager.m */; };
 		0959AB1218BF171D008188AD /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0959AB1118BF171D008188AD /* Authorization.storyboard */; };
@@ -67,6 +68,7 @@
 		0633027E18BF959900886DE6 /* camera_button_take@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_button_take@2x.png"; sourceTree = "<group>"; };
 		0666F4E018B63DFD00042951 /* UIColor+DaBanShi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DaBanShi.h"; sourceTree = "<group>"; };
 		0666F4E118B63DFD00042951 /* UIColor+DaBanShi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DaBanShi.m"; sourceTree = "<group>"; };
+		091ACA9D18C05C0C002961CD /* welcome@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome@2x.png"; sourceTree = "<group>"; };
 		0959AAFB18BEE4C1008188AD /* DBAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAuthManager.h; sourceTree = "<group>"; };
 		0959AAFC18BEE4C1008188AD /* DBAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAuthManager.m; sourceTree = "<group>"; };
 		0959AAFE18BEE55E008188AD /* DBUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserManager.h; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		099D6EC618B5DD38001B7CDF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				091ACA9D18C05C0C002961CD /* welcome@2x.png */,
 				0633027D18BF959900886DE6 /* camera_button_take.png */,
 				0633027E18BF959900886DE6 /* camera_button_take@2x.png */,
 				099D6EBE18B5B91A001B7CDF /* cover_placeholder.png */,
@@ -405,6 +408,7 @@
 			files = (
 				0633028018BF959900886DE6 /* camera_button_take@2x.png in Resources */,
 				0959AB1218BF171D008188AD /* Authorization.storyboard in Resources */,
+				091ACA9E18C05C0C002961CD /* welcome@2x.png in Resources */,
 				09D3098918B4B0B1003F2840 /* Images.xcassets in Resources */,
 				09D309B018B4CF72003F2840 /* avatar_placehold@2x.png in Resources */,
 				098BA13418BDE266002C6065 /* SettingsProperties.plist in Resources */,
