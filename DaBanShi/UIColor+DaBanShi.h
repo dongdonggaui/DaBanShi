@@ -15,5 +15,7 @@
 + (UIColor *)softBlue;
 + (UIColor *)softGreen;
 + (UIColor *)softOrange;
++ (UIColor *)softBlack;
++ (UIColor *)softGray;
 
 @end

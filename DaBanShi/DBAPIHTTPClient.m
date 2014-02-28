@@ -8,7 +8,7 @@
 
 #import "DBAPIHTTPClient.h"
 
-static NSString *kAPIBasePath = @"http://localhost/dabanshi/api";
+static NSString *kAPIBasePath = @"http://localhost/dabanshiserver/api";
 
 @implementation DBAPIHTTPClient
 

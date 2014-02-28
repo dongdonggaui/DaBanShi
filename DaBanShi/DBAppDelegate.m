@@ -8,12 +8,21 @@
 
 #import "DBAppDelegate.h"
 #import "DBAuthManager.h"
+#import "UIColor+DaBanShi.h"
 
 @implementation DBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    if (DBSystemVersion >= 7) {
+        [[UINavigationBar appearance] setBarTintColor:[UIColor softBlack]];
+        [[UITabBar appearance] setBarTintColor:[UIColor softBlack]];
+    } else {
+        [[UINavigationBar appearance] setTintColor:[UIColor softGray]];
+        [[UITabBar appearance] setTintColor:[UIColor softGray]];
+    }
+    
     if (![[DBAuthManager sharedInstance] isAuthorized]) {
         [self switchToAuhorizationView];
     }

@@ -28,10 +28,12 @@ static NSString *kUserDefaultsKeyCredential = @"kUserDefaultsKeyCredential";
 
 - (DBCredential *)loginCredential
 {
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsKeyCredential];
-    if (data) {
-        NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        _loginCredential = [DBCredential credentialFromDictionary:dic];
+    if (!_loginCredential) {
+        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsKeyCredential];
+        if (data) {
+            NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            _loginCredential = [DBCredential credentialFromDictionary:dic];
+        }
     }
     
     return _loginCredential;
