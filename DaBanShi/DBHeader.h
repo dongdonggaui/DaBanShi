@@ -19,4 +19,18 @@
 #   define DLog(...)
 #endif
 
+//************************************************************************************
+
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define HLYSystemVersion ([[[UIDevice currentDevice] systemVersion] floatValue])
+#define HLYTextAlignmentCenter (HLYSystemVersion >= 6 ? NSTextAlignmentCenter : UITextAlignmentCenter)
+#define HLYTextAlignmentLeft (HLYSystemVersion >= 6 ? NSTextAlignmentLeft : UITextAlignmentLeft)
+#define HLYTextAlignmentRight (HLYSystemVersion >= 6 ? NSTextAlignmentRight : UITextAlignmentRight)
+
+#define HLYViewHeight (HLYSystemVersion >= 7 ? self.view.frame.size.height - 64 : self.view.frame.size.height)
+
+//************************************************************************************
+
+#import "UIView+ModifyFrame.h"
+
 #endif

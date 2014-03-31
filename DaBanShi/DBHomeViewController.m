@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
     DBGridCellModel *cellModel1 = [[DBGridCellModel alloc] init];
     cellModel1.cellType = DBGridCellTypeBig;
     cellModel1.cellTitle = @"推荐";
@@ -47,15 +47,15 @@
     cellModel3.imageName = @"cover_placeholder";
     DBGridCellModel *cellModel4 = [[DBGridCellModel alloc] init];
     cellModel4.cellType = DBGridCellTypeBig;
-    cellModel4.cellTitle = @"xxx";
-    cellModel4.cellDetail = @"xxxxxxxx";
+    cellModel4.cellTitle = @"厂家";
+    cellModel4.cellDetail = @"最有实力厂家";
     cellModel4.imageName = @"cover_placeholder";
     DBGridCellModel *cellModel5 = [[DBGridCellModel alloc] init];
     cellModel5.cellType = DBGridCellTypeSamll;
-    cellModel5.cellTitle = @"xxx";
-    cellModel5.cellDetail = @"xxxxxxxx";
+    cellModel5.cellTitle = @"销售商";
+    cellModel5.cellDetail = @"最有实力销售商";
     cellModel5.imageName = @"cover_placeholder";
-    DBGridView *gridView = [[DBGridView alloc] initWithContents:[NSArray arrayWithObjects:cellModel1, cellModel2, cellModel3, cellModel4, cellModel5, nil]];
+    DBGridView *gridView = [[DBGridView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) contents:[NSArray arrayWithObjects:cellModel1, cellModel2, cellModel3, cellModel4, cellModel5, nil]];
     gridView.gridDelegate = self;
     [self.view addSubview:gridView];
 }
@@ -69,8 +69,13 @@
 #pragma mark - grid view delegate
 - (void)gridView:(DBGridView *)gridView didTappedAtIndex:(NSInteger)index
 {
-    NSLog(@"index = %d", index);
-    [self performSegueWithIdentifier:@"showDaBanShiList" sender:nil];
+    NSLog(@"index = %ld", index);
+    if (3 == index) {
+        [self performSegueWithIdentifier:@"showFirmList" sender:nil];
+    } else if (4 == index) {
+        [self performSegueWithIdentifier:@"showSalerList" sender:nil];
+    } else
+        [self performSegueWithIdentifier:@"showDaBanShiList" sender:nil];
 }
 
 - (IBAction)citySelectorDidTapped:(id)sender {

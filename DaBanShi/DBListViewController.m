@@ -7,14 +7,13 @@
 //
 
 #import "DBListViewController.h"
-#import "DBUserManager.h"
+
+#import "DBUser.h"
 
 extern const NSString *kDBNotificationCityDidChange;
 
 @interface DBListViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *datas;
 - (IBAction)citySelectorDidTapped:(id)sender;
 
 @end
@@ -23,7 +22,7 @@ extern const NSString *kDBNotificationCityDidChange;
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:(NSString *)kDBNotificationCityDidChange object:nil];
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -39,16 +38,9 @@ extern const NSString *kDBNotificationCityDidChange;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    _datas = [NSMutableArray array];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveCityChangeNotification:) name:(NSString *)kDBNotificationCityDidChange object:nil];
-    [[DBUserManager sharedInstance] fetchAllDaBanShiOnSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *response = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-        [self.datas addObjectsFromArray:response];
-        NSLog(@"response = %@", response);
-        [self.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error = %@", error);
-    }];
+    [self fetchDatas];
+    
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -62,6 +54,27 @@ extern const NSString *kDBNotificationCityDidChange;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - override
+- (void)fetchDatas
+{
+    
+}
+
+- (void)showItemDetailAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+#pragma mark - setters & getters
+- (NSMutableArray *)datas
+{
+    if (!_datas) {
+        _datas = [NSMutableArray array];
+    }
+    
+    return _datas;
 }
 
 #pragma mark - 
@@ -85,21 +98,26 @@ extern const NSString *kDBNotificationCityDidChange;
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 75;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.tableView) {
         static NSString *cellIdentifier = @"ListCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell) {
-            NSDictionary *dic = [self.datas objectAtIndex:indexPath.row];
-            NSString *avator = [dic objectForKey:@"avator"] != [NSNull null] ? [dic objectForKey:@"avator"] : @"avatar_placehold";
+            DBUser *pm = [self.datas objectAtIndex:indexPath.row];
+            NSString *avator = pm.avatorUrl != nil ? pm.avatorUrl : @"avatar_placehold";
             UIImage *image = [UIImage imageNamed:avator];
             cell.imageView.image = image;
             cell.imageView.layer.cornerRadius = 5;
             cell.clipsToBounds = YES;
-            cell.textLabel.text = [dic objectForKey:@"nickname"];
+            cell.textLabel.text = pm.nickname;
             cell.detailTextLabel.numberOfLines = 0;
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"18627979166\n%@", [dic objectForKey:@"address"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"18627979166\n%@", pm.address];
         }
         
         return cell;
@@ -109,17 +127,7 @@ extern const NSString *kDBNotificationCityDidChange;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"showDaBanShiDetail" sender:cell.textLabel.text];
-}
-
-#pragma mark - segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"showDaBanShiDetail"]) {
-        UIViewController *vc = [segue destinationViewController];
-        vc.title = sender;
-    }
+    [self showItemDetailAtIndexPath:indexPath];
 }
 
 - (IBAction)citySelectorDidTapped:(id)sender {

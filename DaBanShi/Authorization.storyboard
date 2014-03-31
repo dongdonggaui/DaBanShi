@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="H2D-Gc-XCS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="H2D-Gc-XCS">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -75,7 +75,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="v0n-na-qmp" kind="push" id="7uW-lL-k5R"/>
+                                    <segue destination="I9p-HC-la5" kind="push" id="dpA-YV-GHY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="O2m-Vv-JKI">
@@ -103,10 +103,65 @@
             </objects>
             <point key="canvasLocation" x="692" y="-320"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Identifier Choose View Controller-->
+        <scene sceneID="pZb-Zy-jzr">
+            <objects>
+                <viewController id="I9p-HC-la5" customClass="DBIdentifierChooseViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VMr-DF-yuy">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您是：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gGH-2u-sge">
+                                <rect key="frame" x="135" y="20" width="51" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="F79-z6-rw9">
+                                <rect key="frame" x="108" y="75" width="104" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.58431375029999999" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="打版师">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cP0-t4-NMy">
+                                <rect key="frame" x="20" y="162" width="104" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.58431375029999999" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="服装厂商">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C6J-W4-Bov">
+                                <rect key="frame" x="196" y="162" width="104" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.58431375029999999" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="服装销售商">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EJi-cJ-hnZ"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="firmButton" destination="cP0-t4-NMy" id="BcR-j5-uUp"/>
+                        <outlet property="patternMakerButton" destination="F79-z6-rw9" id="Wa6-Xu-2im"/>
+                        <outlet property="salerButton" destination="C6J-W4-Bov" id="fog-PZ-8M2"/>
+                        <segue destination="v0n-na-qmp" kind="push" identifier="showSignup" id="cfR-N3-Dhi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uue-1V-aXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1191" y="-29"/>
+        </scene>
+        <!--Signup Mode Choose View Controller-->
         <scene sceneID="1PC-Bq-J3Q">
             <objects>
-                <tableViewController id="v0n-na-qmp" sceneMemberID="viewController">
+                <tableViewController id="v0n-na-qmp" customClass="DBSignupModeChooseViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="4UK-Ry-Uog">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,7 +206,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="qLS-6w-M7I" kind="push" id="ryE-AU-jll"/>
+                                            <segue destination="qLS-6w-M7I" kind="push" identifier="showEmailSignup" id="ryE-AU-jll"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -222,12 +277,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0BL-hw-FiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1235" y="1"/>
+            <point key="canvasLocation" x="1613" y="-29"/>
         </scene>
-        <!--View Controller - 邮箱注册-->
+        <!--Email Signup View Controller - 邮箱注册-->
         <scene sceneID="k6Z-oT-QQ5">
             <objects>
-                <viewController id="qLS-6w-M7I" sceneMemberID="viewController">
+                <viewController id="qLS-6w-M7I" customClass="DBEmailSignupViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LZ1-GN-hZY">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -280,10 +335,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="邮箱注册" id="bkC-pt-R2L"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="0fx-pi-idR" id="ytW-bd-D8b"/>
+                        <outlet property="passwordTextField" destination="Whl-fl-S0b" id="nf6-2f-QxC"/>
+                        <outlet property="submitButton" destination="k5x-XW-wSr" id="D0Q-iU-jfZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuK-xk-iGY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1779" y="338"/>
+            <point key="canvasLocation" x="2157" y="308"/>
         </scene>
         <!--View Controller - 手机号注册-->
         <scene sceneID="NML-pM-JnF">
@@ -347,7 +407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d3w-lW-jPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1779" y="-336"/>
+            <point key="canvasLocation" x="2157" y="-366"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="GpP-GD-wu6">
@@ -455,6 +515,7 @@
                         <outlet property="accountLabel" destination="FAG-OI-cQ3" id="I2d-Hs-oWZ"/>
                         <outlet property="loginButton" destination="Pkj-Rf-Sdn" id="o2D-Rd-MUm"/>
                         <outlet property="passwordLabel" destination="uzF-Ua-4Pd" id="FpJ-ox-Mcg"/>
+                        <outlet property="sinaLoginButton" destination="juB-dp-xcm" id="cOd-YX-SEL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="POf-mK-Z9R" userLabel="First Responder" sceneMemberID="firstResponder"/>

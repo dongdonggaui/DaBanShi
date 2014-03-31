@@ -1,20 +1,28 @@
 //
-//  DBViewController.h
-//  DaBanShi
+//  HLYViewController.h
+//  MyWeChat
 //
-//  Created by huangluyang on 14-2-19.
-//  Copyright (c) 2014年 huangluyang. All rights reserved.
+//  Created by 黄露洋 on 13-11-7.
+//  Copyright (c) 2013年 黄露洋. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <MBProgressHUD.h>
-#import "DBAppDelegate.h"
 
+@class DBAppDelegate;
+@class HLYTopIndicateView;
 @interface DBViewController : UIViewController
 
-@property (nonatomic, weak) id passValue;
-@property (nonatomic, strong) MBProgressHUD *hud;
+@property (nonatomic, strong) HLYTopIndicateView *topIndicateView;
+@property (nonatomic, strong) UIBarButtonItem *dbsLeftBarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *dbsRightBarButtonItem;
+@property (nonatomic, strong) id passValue;
 
 - (DBAppDelegate *)appDelegate;
+- (NSUserDefaults *)userDefaults;
+- (void)setupViews;
+- (void)dbsLeftItemDidTapped:(id)sender;
+- (void)dbsRightItemDidTapped:(id)sender;
+- (BOOL)needCustomLeftItem;
+- (void)presentLoginViewCompleted:(void(^)(void))completed;
 
 @end

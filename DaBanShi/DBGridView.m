@@ -41,11 +41,9 @@ const static float rightOrign       = 162.5f;
     return self;
 }
 
-- (instancetype)initWithContents:(NSArray *)contents
+- (instancetype)initWithFrame:(CGRect)frame contents:(NSArray *)contents
 {
-    CGRect bounds = [[[[UIApplication sharedApplication] delegate] window] bounds];
-    self = [self initWithFrame:CGRectMake(0, 0, bounds.size.width, bounds.size.height)];
-    if (self) {
+    if (self = [self initWithFrame:frame]) {
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
         
@@ -94,7 +92,7 @@ const static float rightOrign       = 162.5f;
         
         _cells = [NSMutableArray array];
         if (contents != nil) {
-            int count = contents.count;
+            unsigned long count = contents.count;
             int i;
             for (i = 0; i < count; i++) {
                 DBGridCellModel *model = [contents objectAtIndex:i];
@@ -147,7 +145,7 @@ const static float rightOrign       = 162.5f;
             }
             cell.frame = rect;
         }
-        self.contentSize = CGSizeMake(self.frame.size.width, MAX(self.leftHeight, self.rightHeight) + 1);
+        self.contentSize = CGSizeMake(self.frame.size.width, MAX(MAX(self.leftHeight, self.rightHeight), self.frame.size.height) + 1);
     }
     
     return self;
@@ -178,7 +176,7 @@ const static float rightOrign       = 162.5f;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    int currentPage = lroundf(scrollView.contentOffset.x / scrollView.frame.size.width);
+    int currentPage = ceilf(scrollView.contentOffset.x / scrollView.frame.size.width);
     self.pageControl.currentPage = currentPage;
 }
 

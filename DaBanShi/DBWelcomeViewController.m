@@ -33,6 +33,18 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.bounces = NO;
     self.scrollView.contentSize = CGSizeMake(3 * self.view.frame.size.width, self.view.frame.size.height);
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    CGRect frame = btn.frame;
+    frame.origin.x = 100;
+    frame.origin.y = 200;
+    frame.size.width = 100;
+    frame.size.height = 40;
+    btn.frame = frame;
+    [btn setTitle:@"show" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(testButtonDidTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [btn setBackgroundColor:[UIColor grayColor]];
+    [self.view addSubview:btn];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,6 +65,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - private
+- (void)testButtonDidTapped:(UIButton *)sender
+{
+    
 }
 
 #pragma mark - scroll view delegate

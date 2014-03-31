@@ -7,14 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DBAppDelegate.h"
 
+@class DBAppDelegate;
+@class HLYTopIndicateView;
 @interface DBTableViewController : UITableViewController
 
-@property (nonatomic, weak) id passValue;
 @property (nonatomic) BOOL refreshEnable;
+@property (nonatomic, strong) HLYTopIndicateView *topIndicateView;
+@property (nonatomic, strong) UIBarButtonItem *dbsLeftBarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *dbsRightBarButtonItem;
+@property (nonatomic, strong) id passValue;
 
 - (DBAppDelegate *)appDelegate;
+- (NSUserDefaults *)userDefaults;
+- (void)setupViews;
+- (void)dbsLeftItemDidTapped:(id)sender;
+- (void)dbsRightItemDidTapped:(id)sender;
+- (BOOL)needCustomLeftItem;
+- (void)presentLoginViewCompleted:(void(^)(void))completed;
+
+// table view private
 - (void)refreshControlValueChanged:(UIRefreshControl *)sender;
 
 @end

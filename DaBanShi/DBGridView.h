@@ -20,6 +20,6 @@
 
 @property (nonatomic, weak) id<DBGridViewDelegate> gridDelegate;
 
-- (instancetype)initWithContents:(NSArray *)contents;
+- (instancetype)initWithFrame:(CGRect)frame contents:(NSArray *)contents;
 
 @end

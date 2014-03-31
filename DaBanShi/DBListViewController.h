@@ -10,4 +10,9 @@
 
 @interface DBListViewController : DBTableViewController
 
+@property (nonatomic, strong) NSMutableArray *datas;
+
+- (void)fetchDatas;
+- (void)showItemDetailAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
