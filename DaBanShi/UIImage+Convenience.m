@@ -12,7 +12,7 @@
 
 + (instancetype)HLY_defaultAvatar
 {
-    return [UIImage imageNamed:@"defaultAvatar"];
+    return [UIImage imageNamed:@"avatar_placehold"];
 }
 
 
@@ -33,7 +33,7 @@
 
 + (instancetype)HLY_errorImage
 {
-    return [UIImage imageNamed:@"error"];
+    return [UIImage imageNamed:@"avatar_placehold"];
 }
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 黄露洋. All rights reserved.
 //
 
+#import <UMengAnalytics/MobClick.h>
 #import "DBViewController.h"
 #import "HLYTopIndicateView.h"
 
@@ -52,6 +53,9 @@ const NSString *kNotificationControllerDidPushed = @"kNotificationControllerDidP
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:(NSString *)kNotificationControllerDidPushed object:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"isRoot", nil]];
     }
+    
+    // analytics
+    [MobClick beginLogPageView:NSStringFromClass(self.class)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -59,6 +63,14 @@ const NSString *kNotificationControllerDidPushed = @"kNotificationControllerDidP
     [super viewDidAppear:animated];
     
 //    [self.topIndicateView showMessage:@"服务器错误，请稍候再试"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // analytics
+    [MobClick endLogPageView:NSStringFromClass(self.class)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,7 +124,7 @@ const NSString *kNotificationControllerDidPushed = @"kNotificationControllerDidP
 - (void)setupViews
 {
     if (HLYSystemVersion >= 7) {
-        self.edgesForExtendedLayout = UIRectEdgeBottom;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     self.view.backgroundColor = [UIColor HLY_mainBackgroundColor];
     HLYTopIndicateView *top = [HLYTopIndicateView topIndicateWithMessage:@"hello"];

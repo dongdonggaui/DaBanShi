@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 huangluyang. All rights reserved.
 //
 
-#import "DBListViewController.h"
+#import "DBUserListViewController.h"
 
-@interface DBPatternMakerListViewController : DBListViewController
+@interface DBPatternMakerListViewController : DBUserListViewController
 
 @end

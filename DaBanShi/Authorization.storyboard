@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="H2D-Gc-XCS">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -156,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uue-1V-aXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1191" y="-29"/>
+            <point key="canvasLocation" x="1225" y="-35"/>
         </scene>
         <!--Signup Mode Choose View Controller-->
         <scene sceneID="1PC-Bq-J3Q">
@@ -277,7 +277,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0BL-hw-FiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1613" y="-29"/>
+            <point key="canvasLocation" x="1647" y="-35"/>
         </scene>
         <!--Email Signup View Controller - 邮箱注册-->
         <scene sceneID="k6Z-oT-QQ5">
@@ -313,7 +313,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="8I3-Q5-kHf">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yanzhengma.png" id="8I3-Q5-kHf">
                                             <rect key="frame" x="193" y="96" width="107" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -339,6 +339,7 @@
                         <outlet property="emailTextField" destination="0fx-pi-idR" id="ytW-bd-D8b"/>
                         <outlet property="passwordTextField" destination="Whl-fl-S0b" id="nf6-2f-QxC"/>
                         <outlet property="submitButton" destination="k5x-XW-wSr" id="D0Q-iU-jfZ"/>
+                        <outlet property="tableView" destination="oyb-3y-Rak" id="Qya-MY-VZV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuK-xk-iGY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -450,14 +451,6 @@
                                                 <action selector="loginButtonDidTapped:" destination="ACi-s5-eIQ" eventType="touchUpInside" id="vh8-5m-und"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0ia-Kz-0PC">
-                                            <rect key="frame" x="106" y="260" width="108" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="新浪微博账号登录">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Dgn-lY-GLq">
                                             <rect key="frame" x="192" y="230" width="108" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -470,7 +463,7 @@
                                             <rect key="frame" x="16" y="230" width="108" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="微信账号登录">
+                                            <state key="normal" title="新浪账号登录">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
@@ -515,7 +508,9 @@
                         <outlet property="accountLabel" destination="FAG-OI-cQ3" id="I2d-Hs-oWZ"/>
                         <outlet property="loginButton" destination="Pkj-Rf-Sdn" id="o2D-Rd-MUm"/>
                         <outlet property="passwordLabel" destination="uzF-Ua-4Pd" id="FpJ-ox-Mcg"/>
+                        <outlet property="qqLoginButton" destination="Dgn-lY-GLq" id="z9w-31-tus"/>
                         <outlet property="sinaLoginButton" destination="juB-dp-xcm" id="cOd-YX-SEL"/>
+                        <segue destination="I9p-HC-la5" kind="push" identifier="showActorChooser" id="SmQ-O2-eOT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="POf-mK-Z9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -526,10 +521,14 @@
     <resources>
         <image name="avatar_placehold.png" width="60" height="60"/>
         <image name="welcome" width="640" height="568"/>
+        <image name="yanzhengma.png" width="76" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="SmQ-O2-eOT"/>
+    </inferredMetricsTieBreakers>
 </document>

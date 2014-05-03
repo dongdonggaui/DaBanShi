@@ -7,8 +7,9 @@
 //
 
 #import "HLYImageCache.h"
+#import "NSString+MD5.h"
 
-static const NSString *kImageBaseUrl = @"http://hiwedo.oss-cn-hangzhou.aliyuncs.com";
+//static const NSString *kImageBaseUrl = @"http://hiwedo.oss-cn-hangzhou.aliyuncs.com";
 
 static const NSString *kImageCacheVersion = @"kImageCacheVersion";
 static const NSInteger kImageStaleSeconds = 30 * 24 * 3600;
@@ -49,17 +50,11 @@ static int kCacheMemoryLimit;
     kCacheMemoryLimit = 20;
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveMemoryCacheToDisk:)
-                                                 name:UIApplicationDidReceiveMemoryWarningNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveMemoryCacheToDisk:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveMemoryCacheToDisk:)
-                                                 name:UIApplicationDidEnterBackgroundNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveMemoryCacheToDisk:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveMemoryCacheToDisk:)
-                                                 name:UIApplicationWillTerminateNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveMemoryCacheToDisk:) name:UIApplicationWillTerminateNotification object:nil];
 }
 
 + (void)dealloc
@@ -81,35 +76,37 @@ static int kCacheMemoryLimit;
 
 + (void)cacheImage:(UIImage *)image withEntityName:(NSString *)entityName
 {
-//    NSString *key = [entityName HWD_md5];
-    if (entityName.length < kImageBaseUrl.length) {
-        return;
-    }
-    NSString *key = [entityName substringFromIndex:kImageBaseUrl.length];
-    if ([key hasPrefix:@"/"]) {
-        key = [key substringFromIndex:1];
-    } else {
-        key = [key substringFromIndex:8];
-    }
+    NSString *key = [entityName HWD_md5];
+//    if (entityName.length < kImageBaseUrl.length) {
+//        return;
+//    }
+//    NSString *key = [entityName substringFromIndex:kImageBaseUrl.length];
+//    if ([key hasPrefix:@"/"]) {
+//        key = [key substringFromIndex:1];
+//    } else {
+//        key = [key substringFromIndex:8];
+//    }
 //    NSString *file = [NSString stringWithFormat:@"%@.jpg", key];
+//    key = [key stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
     [self cacheData:UIImageJPEGRepresentation(image, 1)
              toFile:key];
 }
 
 + (UIImage *)fetchCachedImageForEntity:(NSString *)entityName
 {
-//    NSString *key = [entityName HWD_md5];
-    if (entityName.length < kImageBaseUrl.length) {
-        return nil;
-    }
-    NSString *key = [entityName substringFromIndex:kImageBaseUrl.length];
-    if ([key hasPrefix:@"/"]) {
-        key = [key substringFromIndex:1];
-    } else {
-        key = [key substringFromIndex:8];
-    }
+    NSString *key = [entityName HWD_md5];
+//    if (entityName.length < kImageBaseUrl.length) {
+//        return nil;
+//    }
+//    NSString *key = [entityName substringFromIndex:kImageBaseUrl.length];
+//    if ([key hasPrefix:@"/"]) {
+//        key = [key substringFromIndex:1];
+//    } else {
+//        key = [key substringFromIndex:8];
+//    }
 //    NSString *file = [NSString stringWithFormat:@"%@.jpg", key];
-    DLog(@"path = \n%@\n, key = \n %@\n", entityName, key);
+//    key = [key stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
+//    DLog(@"path = \n%@\n, key = \n %@\n", entityName, key);
     NSData *data = [self dataForFile:key];
     if (data) {
         return [UIImage imageWithData:data];
@@ -129,14 +126,23 @@ static int kCacheMemoryLimit;
 + (NSString *)cacheDirectory
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *cachesDirectory = [paths objectAtIndex:0];
-	return [cachesDirectory stringByAppendingPathComponent:@"AppImageCache"];
+    NSString *cachesDirectory = [paths lastObject];
+    NSString *imageCache = [cachesDirectory stringByAppendingPathComponent:@"HWDImageCache"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:imageCache]) {
+        NSError *error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:imageCache withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            DLog(@"create error --> %@", error);
+        }
+    }
+	return imageCache;
 }
 
 + (BOOL)isImageStaleForEntity:(NSString *)entityName
 {
     // if it is in memory cache, it is not stale
-    if([recentlyAccessedKeys containsObject:[NSString stringWithFormat:@"%@.archive", entityName]])
+    NSString *key = [entityName HWD_md5];
+    if([recentlyAccessedKeys containsObject:[NSString stringWithFormat:@"%@.archive", key]])
         return NO;
     
 	NSString *archivePath = [[HLYImageCache cacheDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.archive", entityName]];
@@ -163,9 +169,9 @@ static int kCacheMemoryLimit;
     {
         NSString *leastRecentlyUsedDataFilename = [recentlyAccessedKeys lastObject];
         NSData *leastRecentlyUsedCacheData = [memoryCache objectForKey:leastRecentlyUsedDataFilename];
-        NSString *archivePath = [[HLYImageCache cacheDirectory] stringByAppendingPathComponent:fileName];
-        DLog(@"write path --> %@", archivePath);
-        [leastRecentlyUsedCacheData writeToFile:archivePath atomically:YES];
+        NSString *archivePath = [[HLYImageCache cacheDirectory] stringByAppendingPathComponent:leastRecentlyUsedDataFilename];
+        BOOL rect = [leastRecentlyUsedCacheData writeToFile:archivePath atomically:YES];
+        DLog(@"write path --> %@, success --> %@", archivePath, rect ? @"YES" : @"NO");
         
         [recentlyAccessedKeys removeLastObject];
         [memoryCache removeObjectForKey:leastRecentlyUsedDataFilename];
@@ -180,7 +186,6 @@ static int kCacheMemoryLimit;
     
 	NSString *archivePath = [[HLYImageCache cacheDirectory] stringByAppendingPathComponent:fileName];
     data = [NSData dataWithContentsOfFile:archivePath];
-    DLog(@"file path --> %@", archivePath);
     
     if(data)
         [self cacheData:data toFile:fileName]; // put the recently accessed data to memory cache
@@ -190,6 +195,7 @@ static int kCacheMemoryLimit;
 
 + (void)saveMemoryCacheToDisk:(NSNotification *)notification
 {
+    DLog(@"image cache did receive notification --> %@", notification.name);
     for(NSString *filename in [memoryCache allKeys])
     {
         NSString *archivePath = [[HLYImageCache cacheDirectory] stringByAppendingPathComponent:filename];

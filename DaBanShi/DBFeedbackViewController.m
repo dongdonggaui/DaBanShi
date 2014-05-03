@@ -14,6 +14,7 @@
 #import "DBUser.h"
 
 #import "UIColor+Convenience.h"
+#import "NSString+InputCheck.h"
 
 @interface DBFeedbackViewController () <UITextViewDelegate, UITextFieldDelegate>
 
@@ -61,9 +62,15 @@
 #pragma mark - override
 - (void)dbsRightItemDidTapped:(id)sender
 {
+    [self.view endEditing:YES];
+    
+    NSString *feedback = [self.textView.text HLY_trim];
+    if ([feedback HLY_isNull]) {
+        return;
+    }
     DBUser *user = [DBAclManager sharedInstance].loginCredential.user;
     __weak DBFeedbackViewController *safeSelf = self;
-    [[DBNetworkManager sharedInstance] submitFeedback:self.textView.text userId:user.userId email:self.textField.text.length > 0 ? self.textField.text : user.email udid:[DBNetworkManager sharedInstance].deviceUDID success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[DBNetworkManager sharedInstance] submitFeedback:feedback userId:user.userId email:self.textField.text.length > 0 ? self.textField.text : user.email udid:[DBNetworkManager sharedInstance].deviceUDID success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MMProgressHUD showWithStatus:nil];
         [MMProgressHUD dismissWithSuccess:@"提交成功，感谢您的支持" title:nil afterDelay:0.8];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

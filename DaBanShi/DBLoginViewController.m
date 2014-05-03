@@ -7,22 +7,21 @@
 //
 
 #import <MBProgressHUD.h>
-#import <WeiboSDK.h>
 
 #import "DBLoginViewController.h"
 
 #import "DBAclManager.h"
+#import "DBSocialManager.h"
 
 #import "NSString+InputCheck.h"
 
-#define kRedirectURI    @"http://www.hiwedo.com"
-
-@interface DBLoginViewController () <UITextFieldDelegate, WBHttpRequestDelegate>
+@interface DBLoginViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *accountLabel;
 @property (weak, nonatomic) IBOutlet UITextField *passwordLabel;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *sinaLoginButton;
+@property (weak, nonatomic) IBOutlet UIButton *qqLoginButton;
 
 - (IBAction)forgetPasswordDidTapped:(id)sender;
 - (IBAction)registerDidTapped:(id)sender;
@@ -55,7 +54,8 @@
     self.passwordLabel.returnKeyType = UIReturnKeyDone;
     self.passwordLabel.clearButtonMode = UITextFieldViewModeWhileEditing;
     
-    [self.sinaLoginButton addTarget:self action:@selector(sinaLoginButtonDidTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.sinaLoginButton addTarget:self action:@selector(thirdPartyLoginButtonDidTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.qqLoginButton addTarget:self action:@selector(thirdPartyLoginButtonDidTapped:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,16 +65,14 @@
 }
 
 #pragma mark - private
-- (void)sinaLoginButtonDidTapped:(UIButton *)sender
+- (void)thirdPartyLoginButtonDidTapped:(UIButton *)sender
 {
-    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
-    request.redirectURI = kRedirectURI;
-    request.scope = @"all";
-    request.userInfo = @{@"SSO_From": @"SendMessageToWeiboViewController",
-                         @"Other_Info_1": [NSNumber numberWithInt:123],
-                         @"Other_Info_2": @[@"obj1", @"obj2"],
-                         @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
-    [WeiboSDK sendRequest:request];
+    if (sender == self.sinaLoginButton) {
+        [self performSegueWithIdentifier:@"showActorChooser" sender:@"sina"];
+    } else if (sender == self.qqLoginButton) {
+        [self performSegueWithIdentifier:@"showActorChooser" sender:@"qq"];
+    }
+    
 }
 
 - (IBAction)forgetPasswordDidTapped:(id)sender {
@@ -108,11 +106,19 @@
         });
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        DLog(@"errorCode : %ld, errorMessage : %@", operation.response.statusCode, operation.responseString);
+        DLog(@"errorCode : %d, errorMessage : %@", operation.response.statusCode, operation.responseString);
         [MBProgressHUD hideAllHUDsForView:safeSelf.view animated:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%@", operation.responseString] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
     }];
+}
+
+
+#pragma mark - navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    DBViewController *vc = (DBViewController *)segue.destinationViewController;
+    vc.passValue = sender;
 }
 
 
@@ -129,45 +135,5 @@
     return YES;
 }
 
-
-#pragma mark - weibo request delegate
-/**
- 接收并处理来自微博sdk对于网络请求接口的调用响应 以及openAPI
- 如inviteFriend、logOutWithToken的请求
- */
-- (void)request:(WBHttpRequest *)request didReceiveResponse:(NSURLResponse *)response
-{
-    DLog(@"sina response --> %@", response)
-}
-
-/**
- 收到一个来自微博Http请求失败的响应
- 
- @param error 错误信息
- */
-- (void)request:(WBHttpRequest *)request didFailWithError:(NSError *)error
-{
-    DLog(@"sina error --> %@", error);
-}
-
-/**
- 收到一个来自微博Http请求的网络返回
- 
- @param result 请求返回结果
- */
-- (void)request:(WBHttpRequest *)request didFinishLoadingWithResult:(NSString *)result
-{
-    DLog(@"sina result --> %@", request);
-}
-
-/**
- 收到一个来自微博Http请求的网络返回
- 
- @param data 请求返回结果
- */
-- (void)request:(WBHttpRequest *)request didFinishLoadingWithDataResult:(NSData *)data
-{
-    DLog(@"sina data --> %@", data);
-}
 
 @end

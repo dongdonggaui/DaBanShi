@@ -63,28 +63,28 @@
     [self performSegueWithIdentifier:@"showSellerDetail" sender:seller];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tableView == self.tableView) {
-        static NSString *cellIdentifier = @"ListCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        }
-        DBUser *saler = [self.datas objectAtIndex:indexPath.row];
-        NSString *avator = saler.avatorUrl != nil ? saler.avatorUrl : @"avatar_placehold";
-        UIImage *image = [UIImage imageNamed:avator];
-        cell.imageView.image = image;
-        cell.imageView.layer.cornerRadius = 5;
-        cell.clipsToBounds = YES;
-        cell.textLabel.text = saler.nickname;
-        cell.detailTextLabel.numberOfLines = 0;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", saler.signature, saler.address];
-        
-        return cell;
-    }
-    return nil;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (tableView == self.tableView) {
+//        static NSString *cellIdentifier = @"ListCell";
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//        if (!cell) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+//        }
+//        DBUser *saler = [self.datas objectAtIndex:indexPath.row];
+//        NSString *avator = saler.avatorUrl != nil ? saler.avatorUrl : @"avatar_placehold";
+//        UIImage *image = [UIImage imageNamed:avator];
+//        cell.imageView.image = image;
+//        cell.imageView.layer.cornerRadius = 5;
+//        cell.clipsToBounds = YES;
+//        cell.textLabel.text = saler.nickname;
+//        cell.detailTextLabel.numberOfLines = 0;
+//        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", saler.signature, saler.address];
+//        
+//        return cell;
+//    }
+//    return nil;
+//}
 
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -33,6 +33,11 @@
  @params doNotWantSetString 用于验证的非法字符集的字符串表示
  @returns 若不包含非法字符返回 YES，否则返回 NO
  */
-- (BOOL)isValidateInputWithNotWantSet:(NSString *)doNotWantSetString;
+- (BOOL)HLY_isValidateInputWithNotWantSet:(NSString *)doNotWantSetString;
+
+/**
+ 去除多余空格
+ */
+- (NSString *)HLY_trim;
 
 @end

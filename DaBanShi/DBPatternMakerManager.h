@@ -12,6 +12,9 @@
 
 + (instancetype)sharedInstance;
 
+/**
+ 获取打版师列表
+ */
 - (void)fetchAllDanbanshiAtPage:(NSInteger)page
                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

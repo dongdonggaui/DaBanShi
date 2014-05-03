@@ -38,6 +38,11 @@
         return YES;
     }
     
+    NSString *trimedSelf = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (trimedSelf.length == 0) {
+        return YES;
+    }
+    
     return NO;
 }
 
@@ -48,7 +53,7 @@
  */
 - (BOOL)HLY_isValidateInput
 {
-    return [self isValidateInputWithNotWantSet:@"[]{}（#%-*+=_）\\|~(＜＞$%^&*)_+ "];
+    return [self HLY_isValidateInputWithNotWantSet:@"[]{}（#%-*+=_）\\|~(＜＞$%^&*)_+ "];
 }
 
 /**
@@ -57,12 +62,22 @@
  @params doNotWantSetString 用于验证的非法字符集的字符串表示
  @returns 若不包含非法字符返回 YES，否则返回 NO
  */
-- (BOOL)isValidateInputWithNotWantSet:(NSString *)doNotWantSetString
+- (BOOL)HLY_isValidateInputWithNotWantSet:(NSString *)doNotWantSetString
 {
     NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:doNotWantSetString];
     NSString *tempString = [[self componentsSeparatedByCharactersInSet: doNotWant]componentsJoinedByString: @""];
     
     return self.length == tempString.length;
+}
+
+- (NSString *)HLY_trim
+{
+    if (!self) {
+        return self;
+    }
+    
+    NSString *trimmed = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return trimmed;
 }
 
 @end

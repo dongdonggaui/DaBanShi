@@ -47,6 +47,7 @@ static const NSInteger kActionSheetTagLogout = 22;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.title = @"资料编辑";
     
     self.user = [DBAclManager sharedInstance].loginCredential.user;
     
@@ -119,6 +120,18 @@ static const NSInteger kActionSheetTagLogout = 22;
     [as showInView:self.view];
 }
 
+- (void)showImagePickerWithButtonIndex:(NSInteger)buttonIndex
+{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    if (buttonIndex == 0 && [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera]) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    } else if (buttonIndex == 1 && [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
 
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -171,6 +184,7 @@ static const NSInteger kActionSheetTagLogout = 22;
         userAvatorImageView.x = cell.width - userAvatorImageView.width - 35;
         userAvatorImageView.y = ceilf((cellHeight - userAvatorImageView.height) / 2);
         userAvatorImageView.backgroundColor = [UIColor yellowColor];
+        [userAvatorImageView HLY_loadNetworkImageAtPath:self.user.avatorUrl withPlaceholder:[UIImage HLY_defaultAvatar] errorImage:[UIImage HLY_errorImage] activityIndicator:nil];
     } else {
         if (0 == indexPath.row) {
             cell.textLabel.text = @"昵称";
@@ -239,16 +253,8 @@ static const NSInteger kActionSheetTagLogout = 22;
                 }];
             });
         } else {
+            [self showImagePickerWithButtonIndex:buttonIndex];
             
-            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-            imagePicker.delegate = self;
-            imagePicker.allowsEditing = YES;
-            if (buttonIndex == 0 && [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera]) {
-                imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            } else if (buttonIndex == 1 && [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary]) {
-                imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            }
-            [self presentViewController:imagePicker animated:YES completion:nil];
         }
     }
     

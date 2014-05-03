@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 huangluyang. All rights reserved.
 //
 
-#import "DBTableViewController.h"
+#import "DBProfileViewController.h"
 
-@interface DBDabanshiDetailViewController : DBTableViewController
+@interface DBDabanshiDetailViewController : DBProfileViewController
 
 @end

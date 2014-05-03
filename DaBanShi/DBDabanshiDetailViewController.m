@@ -9,12 +9,17 @@
 #import "DBDabanshiDetailViewController.h"
 #import "DBBookingManager.h"
 
+#import "DBUser.h"
+
 @interface DBDabanshiDetailViewController ()
 
 @property (nonatomic, strong) NSMutableArray *bookingList;
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
+@property (nonatomic) DBUser *patternMaker;
 
 @end
 
@@ -42,16 +47,17 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.avatarImageView.layer.cornerRadius = 8;
     self.avatarImageView.clipsToBounds = YES;
     self.avatarImageView.image = [UIImage imageNamed:@"avatar_placehold"];
     
     self.coverImageView.image = [UIImage imageNamed:@"cover_placeholder"];
+    
+    if (self.passValue && [self.passValue isKindOfClass:[DBUser class]]) {
+        self.patternMaker = self.passValue;
+        self.title = self.patternMaker.nickname;
+        self.addressLabel.text = self.patternMaker.address;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

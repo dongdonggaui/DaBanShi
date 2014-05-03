@@ -115,6 +115,15 @@
     return 0 == indexPath.section ? 80 : 44;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (1 == section) {
+        return @"绑定开放平台账号";
+    }
+    
+    return nil;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"settingCell";
@@ -138,7 +147,6 @@
         if (!nameLabel) {
             nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(avator.x + avator.width + 10, 20, cell.contentView.width - avator.x - avator.width - 10, 18)];
             nameLabel.font = [UIFont HLY_boldMediumFont];
-            nameLabel.backgroundColor = [UIColor greenColor];
             [cell.contentView addSubview:nameLabel];
         }
         nameLabel.text = self.user.nickname;

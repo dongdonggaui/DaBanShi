@@ -87,13 +87,14 @@ static NSString *kUserDefaultsKeyCredential = @"kUserDefaultsKeyCredential";
 
 - (void)thirdPartySignupWithUserId:(NSString *)userId
                        accessToken:(NSString *)accessToken
-                username:(NSString *)username
-                nickname:(NSString *)nickname
-                  avator:(NSString *)avator
-             description:(NSString *)description
-                userType:(NSInteger)type
-                 success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                          username:(NSString *)username
+                          nickname:(NSString *)nickname
+                            avator:(NSString *)avator
+                       description:(NSString *)description
+                          userType:(NSInteger)type
+                          sourceId:(NSInteger)sourceId
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:6];
     if (userId) {
@@ -115,8 +116,17 @@ static NSString *kUserDefaultsKeyCredential = @"kUserDefaultsKeyCredential";
         [params setObject:description forKey:@"description"];
     }
     [params setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
-    [params setObject:[NSNumber numberWithInteger:1] forKey:@"source"];
-    [[DBNetworkManager sharedInstance] postPath:@"register" parameters:params success:success failure:failure];
+    [params setObject:[NSNumber numberWithInteger:sourceId] forKey:@"source_id"];
+    __weak DBAclManager *safeSelf = self;
+    [[DBNetworkManager sharedInstance] postPath:@"register" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        DLog(@"response --> %@", responseObject);
+        
+        safeSelf.loginCredential = [DBCredential credentialFromDictionary:responseObject];
+        DLog(@"credential = %@", safeSelf.loginCredential);
+        if (success) {
+            success(operation, responseObject);
+        }
+    } failure:failure];
 }
 
 

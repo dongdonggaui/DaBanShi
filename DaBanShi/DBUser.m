@@ -22,7 +22,7 @@
     DBUser *user = [[DBUser alloc] init];
     NSDictionary *dic = [properties dictionaryByRemoveNull];
     user.avatorId = [dic objectForKey:@"avator_id"];
-    user.avatorUrl = [dic objectForKey:@"avator_url"];
+    user.avatorUrl = [dic objectForKey:@"avator"];
     user.city = [dic objectForKey:@"city"];
     user.email = [dic objectForKey:@"email"];
     user.userId = [dic objectForKey:@"user_id"];
@@ -36,6 +36,7 @@
     user.type = [dic objectForKey:@"type"];
     user.age = [dic objectForKey:@"age"];
     user.creditRate = [dic objectForKey:@"credit_rate"];
+    user.sourceId = [dic objectForKey:@"source"];
     NSString *dateStr = [dic objectForKey:@"birthday"];
     if (dateStr.length > 0) {
         NSDate *date = [NSDate HLY_dateForLongDisplayTime:dateStr];
@@ -50,7 +51,7 @@
 {
     if (self = [super init]) {
         self.avatorId = [aDecoder decodeObjectForKey:@"avator_id"];
-        self.avatorUrl = [aDecoder decodeObjectForKey:@"avator_url"];
+        self.avatorUrl = [aDecoder decodeObjectForKey:@"avator"];
         self.city = [aDecoder decodeObjectForKey:@"city"];
         self.email = [aDecoder decodeObjectForKey:@"email"];
         self.userId = [aDecoder decodeObjectForKey:@"user_id"];
@@ -65,6 +66,7 @@
         self.type = [aDecoder decodeObjectForKey:@"type"];
         self.age = [aDecoder decodeObjectForKey:@"age"];
         self.creditRate = [aDecoder decodeObjectForKey:@"credit_rate"];
+        self.sourceId = [aDecoder decodeObjectForKey:@"source"];
     }
     
     return self;
@@ -87,11 +89,12 @@
     [aCoder encodeObject:self.birthday forKey:@"birthday"];
     [aCoder encodeObject:self.type forKey:@"type"];
     [aCoder encodeObject:self.age forKey:@"age"];
+    [aCoder encodeObject:self.sourceId forKey:@"source"];
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<\nClass: %@;\nuserId : %@;\nusername : %@\nnickname : %@;\navator : %@;\nuserDescription : %@;\naddress : %@;\ncity : %@;\nemail : %@;\nphone : %@;\ngender : %@;\nsignature : %@;\nbirthday : %@;\ntype : %@\n;\nage : %@;\navatorId : %@\n>", NSStringFromClass([self class]), self.userId, self.username, self.nickname, self.avatorUrl, self.userDescription, self.address, self.city, self.email, self.phone, self.gender, self.signature, self.birthday, self.type, self.age, self.avatorId];
+    return [NSString stringWithFormat:@"<\nClass: %@;\nuserId : %@;\nusername : %@\nnickname : %@;\navator : %@;\nuserDescription : %@;\naddress : %@;\ncity : %@;\nemail : %@;\nphone : %@;\ngender : %@;\nsignature : %@;\nbirthday : %@;\ntype : %@\n;\nage : %@;\navatorId : %@;\nsourceId : %@\n>", NSStringFromClass([self class]), self.userId, self.username, self.nickname, self.avatorUrl, self.userDescription, self.address, self.city, self.email, self.phone, self.gender, self.signature, self.birthday, self.type, self.age, self.avatorId, self.sourceId];
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key
@@ -113,8 +116,11 @@
     } else if ([key isEqualToString:@"avator_id"]) {
         self.avatorId = value;
         
-    } else if ([key isEqualToString:@"avator_url"]) {
+    } else if ([key isEqualToString:@"avator"]) {
         self.avatorUrl = value;
+        
+    } else if ([key isEqualToString:@"source_id"]) {
+        self.sourceId = value;
         
     } else {
         [super setValue:value forKey:key];
@@ -133,7 +139,7 @@
         [dic setObject:self.avatorId forKey:@"avator_id"];
     }
     if (self.avatorUrl) {
-        [dic setObject:self.avatorUrl forKey:@"avator_url"];
+        [dic setObject:self.avatorUrl forKey:@"avator"];
     }
     if (self.userDescription) {
         [dic setObject:self.userDescription forKey:@"description"];
@@ -155,6 +161,9 @@
     }
     if (self.gender) {
         [dic setObject:self.gender forKey:@"gender"];
+    }
+    if (self.sourceId) {
+        [dic setObject:self.sourceId forKey:@"source"];
     }
     if (self.birthday) {
         NSDateFormatter *df = [[NSDateFormatter alloc] init];

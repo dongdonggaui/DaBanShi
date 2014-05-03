@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -37,6 +38,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.submitButton addTarget:self action:@selector(submitButtonDidTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // 去掉多余行
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = footerView;
 }
 
 - (void)didReceiveMemoryWarning

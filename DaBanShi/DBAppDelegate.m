@@ -5,21 +5,25 @@
 //  Created by huangluyang on 14-2-19.
 //  Copyright (c) 2014年 huangluyang. All rights reserved.
 //
-#import <WeiboSDK.h>
+
+#import <UMengAnalytics/MobClick.h>
 #import <MMProgressHUD.h>
 #import "DBAppDelegate.h"
 
+#import "DBSocialManager.h"
 #import "DBNetworkManager.h"
 #import "DBAclManager.h"
+//#import "DBAPNsManager.h"
+#import "DBAirshipManager.h"
+//#import "DBBaiduPushManager.h"
 
 #import "DBUser.h"
 
 #import "UIColor+DaBanShi.h"
 #import "NSDate+HLYDate.h"
 
-@interface DBAppDelegate () <WeiboSDKDelegate, WBHttpRequestDelegate>
+@interface DBAppDelegate ()
 
-@property (nonatomic, strong) NSString *accessToken;
 
 @end
 
@@ -30,8 +34,16 @@
     // network
     [[DBNetworkManager sharedInstance] setup];
     
-    //
+    // HUD style
     [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    
+    // social
+    [[DBSocialManager sharedInstance] registerSocialComponents];
+    
+    // analytics
+    [MobClick startWithAppkey:@"5342997a56240b5a2e1dfe36" reportPolicy:SEND_ON_EXIT channelId:nil];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
     
     // Override point for customization after application launch.
     if (DBSystemVersion >= 7) {
@@ -41,21 +53,25 @@
         [[UINavigationBar appearance] setTintColor:[UIColor softGray]];
         [[UITabBar appearance] setTintColor:[UIColor softGray]];
     }
+    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor whiteColor]}];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
     UIImage *backButtonImage = [[UIImage imageNamed:@"nav_item_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 1)];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage  forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -backButtonImage.size.height*3) forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor whiteColor]} forState:UIControlStateNormal];
     
-//    if (![[DBAclManager sharedInstance] isAuthorized]) {
+    if (![[DBAclManager sharedInstance] isAuthorized]) {
         [self.window makeKeyAndVisible];
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Authorization" bundle:nil];
         UIViewController *vc = [sb instantiateInitialViewController];
         [self.window.rootViewController presentViewController:vc animated:NO completion:nil];
-//    }
-    BOOL rect = [WeiboSDK registerApp:@"118076031"];
-    [WeiboSDK enableDebugMode:YES];
-    DLog(@"weibo sdk register --> %@", rect ? @"YES" : @"NO");
+    }
     
-
+    // apns
+//    [[DBAPNsManager sharedInstance] setupWithLaunchOptions:launchOptions];
+    [[DBAirshipManager sharedInstance] setupWithLaunchOptions:launchOptions];
+//    [[DBBaiduPushManager sharedInstance] setupWithLaunchOptions:launchOptions];
+    
     return YES;
 }
 							
@@ -88,109 +104,32 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    return [WeiboSDK handleOpenURL:url delegate:self];
+    return [[DBSocialManager sharedInstance] handleOpenURL:url];
 }
 
-#pragma mark - weibo sdk delegate
-/**
- 收到一个来自微博客户端程序的请求
- 
- 收到微博的请求后，第三方应用应该按照请求类型进行处理，处理完后必须通过 [WeiboSDK sendResponse:] 将结果回传给微博
- @param request 具体的请求对象
- */
-- (void)didReceiveWeiboRequest:(WBBaseRequest *)request
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    DLog(@"did receive sina request --> %@", request);
+    // 向个推服务器注册deviceToken
+//    [[DBAPNsManager sharedInstance] registerDeviceToken:deviceToken];
+//    [[DBBaiduPushManager sharedInstance] registerDeviceToken:deviceToken];
+    [[DBAirshipManager sharedInstance] registerDeviceToken:deviceToken];
 }
 
-/**
- 收到一个来自微博客户端程序的响应
- 
- 收到微博的响应后，第三方应用可以通过响应类型、响应的数据和 WBBaseResponse.userInfo 中的数据完成自己的功能
- @param response 具体的响应对象
- */
-- (void)didReceiveWeiboResponse:(WBBaseResponse *)response
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    if ([response isKindOfClass:WBAuthorizeResponse.class])
-    {
-        WBAuthorizeResponse *authorizeResponse = (WBAuthorizeResponse *)response;
-        
-        switch (response.statusCode) {
-            case WeiboSDKResponseStatusCodeSuccess: {
-                NSString *accessToken = authorizeResponse.accessToken;
-                NSString *userId = authorizeResponse.userID;
-                NSDate *expire = authorizeResponse.expirationDate;
-                self.accessToken = accessToken;
-                [WBHttpRequest requestWithAccessToken:accessToken url:@"https://api.weibo.com/2/users/show.json" httpMethod:@"GET" params:@{@"uid": userId} delegate:self withTag:@"user_info"];
-                DLog(@"sina token = %@, userId = %@, expire = %@", accessToken, userId, [NSDate HLY_displayDate:expire]);
-                break;
-            }
-            case WeiboSDKResponseStatusCodeUserCancel:
-                [MMProgressHUD show];
-                [MMProgressHUD dismissWithError:@"用户取消授权"];
-                break;
-            case WeiboSDKResponseStatusCodeAuthDeny:
-                [MMProgressHUD show];
-                [MMProgressHUD dismissWithError:@"授权失败"];
-                break;
-                
-            default:
-                break;
-        }
-    }
+//    [[DBAPNsManager sharedInstance] handleRegisterRemoteNotifationError:error];
+//    [[DBBaiduPushManager sharedInstance] handleRegisterRemoteNotifationError:error];
+    [[DBAirshipManager sharedInstance] handleRegisterRemoteNotifationError:error];
 }
 
-#pragma mark - weibo request delegate
-/**
- 接收并处理来自微博sdk对于网络请求接口的调用响应 以及openAPI
- 如inviteFriend、logOutWithToken的请求
- */
-- (void)request:(WBHttpRequest *)request didReceiveResponse:(NSURLResponse *)response
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    DLog(@"sina response --> %@", response)
+//    [[DBAPNsManager sharedInstance] handleDidReceiveRemoteNotification:userInfo];
+//    [[DBBaiduPushManager sharedInstance] handleDidReceiveRemoteNotification:userInfo];
+    [[DBAirshipManager sharedInstance] handleDidReceiveRemoteNotification:userInfo];
 }
 
-/**
- 收到一个来自微博Http请求失败的响应
- 
- @param error 错误信息
- */
-- (void)request:(WBHttpRequest *)request didFailWithError:(NSError *)error
-{
-    DLog(@"sina error --> %@", error);
-}
-
-/**
- 收到一个来自微博Http请求的网络返回
- 
- @param result 请求返回结果
- */
-- (void)request:(WBHttpRequest *)request didFinishLoadingWithResult:(NSString *)result
-{
-    DLog(@"sina result --> %@", request);
-}
-
-/**
- 收到一个来自微博Http请求的网络返回
- 
- @param data 请求返回结果
- */
-- (void)request:(WBHttpRequest *)request didFinishLoadingWithDataResult:(NSData *)data
-{
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    DLog(@"sina data --> %@", dic);
-    DBUser *user = [[DBUser alloc] init];
-    user.userId = [dic objectForKey:@"idstr"];
-    user.username = [dic objectForKey:@"domain"];
-    user.nickname = [dic objectForKey:@"name"];
-    user.avatorUrl = [dic objectForKey:@"profile_image_url"];
-    user.userDescription = [dic objectForKey:@"description"];
-    [[DBAclManager sharedInstance] thirdPartySignupWithUserId:user.userId accessToken:self.accessToken username:user.username nickname:user.nickname avator:user.avatorUrl description:user.userDescription userType:1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        DLog(@"third party register response --> %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        DLog(@"response --> %@, error --> %@", operation.responseString, error);
-    }];
-}
 
 #pragma mark - 
 - (void)switchToStoryboard:(NSString *)storyboardName
@@ -211,6 +150,7 @@
 {
     [self switchToStoryboard:@"Main"];
 }
+
 
 
 @end

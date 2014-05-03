@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 huangluyang. All rights reserved.
 //
 
+//#import <UMengAnalytics/MobClick.h>
 #import "DBTableViewController.h"
 #import "HLYTopIndicateView.h"
 
@@ -44,6 +45,22 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // analytics
+//    [MobClick beginLogPageView:NSStringFromClass(self.class)];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // analytics
+//    [MobClick endLogPageView:NSStringFromClass(self.class)];
 }
 
 #pragma mark - override
@@ -101,6 +118,11 @@
 - (DBAppDelegate *)appDelegate
 {
     return (DBAppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
+- (NSUserDefaults *)userDefaults
+{
+    return [NSUserDefaults standardUserDefaults];
 }
 
 #pragma mark - setters & getters

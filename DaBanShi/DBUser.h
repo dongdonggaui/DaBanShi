@@ -27,6 +27,7 @@
 @property (nonatomic) NSNumber *type;
 @property (nonatomic) NSNumber *age;
 @property (nonatomic) NSNumber *creditRate;
+@property (nonatomic) NSNumber *sourceId;
 
 + (instancetype)userWithProperties:(NSDictionary *)properties;
 - (NSDictionary *)encodedUesr;

@@ -17,31 +17,41 @@
 
 + (instancetype)sharedInstance;
 
-// login
+/**
+ 登录
+ */
 - (void)loginWithAccount:(NSString *)account
                 password:(NSString *)password
                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-// logout
+/**
+ 注销
+ */
 - (void)logoutWithComplecation:(void (^)(void))complecation;
 
-// signup
+/**
+ 注册
+ */
 - (void)signupWithAccount:(NSString *)account
                  password:(NSString *)password
                  userType:(NSInteger)type
                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
-// third party signup
+
+/**
+ 第三方登录/注册请求
+ */
 - (void)thirdPartySignupWithUserId:(NSString *)userId
                        accessToken:(NSString *)accessToken
-                username:(NSString *)username
-                nickname:(NSString *)nickname
-                  avator:(NSString *)avator
-             description:(NSString *)description
-                userType:(NSInteger)type
-                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+                          username:(NSString *)username
+                          nickname:(NSString *)nickname
+                            avator:(NSString *)avator
+                       description:(NSString *)description
+                          userType:(NSInteger)type
+                          sourceId:(NSInteger)sourceId
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 @end
 

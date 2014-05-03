@@ -7,6 +7,7 @@
 //
 
 #import "DBFirmListViewController.h"
+#import "DBViewController.h"
 
 #import "DBFirmManager.h"
 
@@ -72,36 +73,34 @@
     [self performSegueWithIdentifier:@"showFirmDetail" sender:firm];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tableView == self.tableView) {
-        static NSString *cellIdentifier = @"ListCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        }
-        DBUser *firm = [self.datas objectAtIndex:indexPath.row];
-        NSString *avator = firm.avatorUrl != nil ? firm.avatorUrl : @"avatar_placehold";
-        UIImage *image = [UIImage imageNamed:avator];
-        cell.imageView.image = image;
-        cell.imageView.layer.cornerRadius = 5;
-        cell.clipsToBounds = YES;
-        cell.textLabel.text = firm.nickname;
-        cell.detailTextLabel.numberOfLines = 0;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", firm.signature, firm.address];
-        
-        return cell;
-    }
-    return nil;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (tableView == self.tableView) {
+//        static NSString *cellIdentifier = @"ListCell";
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//        if (!cell) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+//        }
+//        DBUser *firm = [self.datas objectAtIndex:indexPath.row];
+//        NSString *avator = firm.avatorUrl != nil ? firm.avatorUrl : @"avatar_placehold";
+//        UIImage *image = [UIImage imageNamed:avator];
+//        cell.imageView.image = image;
+//        cell.imageView.layer.cornerRadius = 5;
+//        cell.clipsToBounds = YES;
+//        cell.textLabel.text = firm.nickname;
+//        cell.detailTextLabel.numberOfLines = 0;
+//        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", firm.signature, firm.address];
+//        
+//        return cell;
+//    }
+//    return nil;
+//}
 
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showFirmDetail"]) {
-        UIViewController *vc = [segue destinationViewController];
-        vc.title = sender;
-    }
+    DBViewController *vc = (DBViewController *)segue.destinationViewController;
+    vc.passValue = sender;
 }
 
 @end

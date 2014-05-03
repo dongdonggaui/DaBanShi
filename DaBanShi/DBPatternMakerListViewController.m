@@ -57,29 +57,7 @@
 - (void)showItemDetailAtIndexPath:(NSIndexPath *)indexPath
 {
     DBUser *patterMaker = [self.datas objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"showDaBanShiDetailSegue" sender:patterMaker];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tableView == self.tableView) {
-        static NSString *cellIdentifier = @"ListCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell) {
-            DBUser *pm = [self.datas objectAtIndex:indexPath.row];
-            NSString *avator = pm.avatorUrl != nil ? pm.avatorUrl : @"avatar_placehold";
-            UIImage *image = [UIImage imageNamed:avator];
-            cell.imageView.image = image;
-            cell.imageView.layer.cornerRadius = 5;
-            cell.clipsToBounds = YES;
-            cell.textLabel.text = pm.nickname;
-            cell.detailTextLabel.numberOfLines = 0;
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", pm.signature, pm.address];
-        }
-        
-        return cell;
-    }
-    return nil;
+    [self performSegueWithIdentifier:@"showDaBanShiDetail" sender:patterMaker];
 }
 
 
